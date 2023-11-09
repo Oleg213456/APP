@@ -1,0 +1,63 @@
+﻿<Page x:Class="CurcovaaGolovin.Pages.ChildbirthPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CurcovaaGolovin.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ChildbirthPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="45*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Width="425" Height="42">
+            <TextBlock Style="{StaticResource MainTextBlock}" Height="20">Поиск карточки</TextBlock>
+            <TextBox Style="{StaticResource MainTextBox}" Margin="8"  Width="255"></TextBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"  Grid.RowSpan="3" Grid.Row="1" >
+            <StackPanel Grid.Row="1">
+                <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Начало</TextBlock>
+                <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Конец</TextBlock>
+                <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="11">Роженица</TextBlock>
+
+            </StackPanel>
+            <StackPanel>
+                <DatePicker Style="{StaticResource DatePicerTextBox}" Margin="10" Width="175"></DatePicker>
+                <DatePicker Style="{StaticResource DatePicerTextBox}" Margin="10"  Width="175"></DatePicker>
+                <TextBox Style="{StaticResource MainTextBox}" Width="175" ></TextBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Описание</TextBlock>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBox Style="{StaticResource MainTextBox}" Height="110" TextWrapping="Wrap" Width="239"></TextBox>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2">
+            <TextBlock Margin="10,3,3,3">Список рожениц</TextBlock>
+            <ListView Height="182" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+        <StackPanel Grid.Row="2" VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Height="56" Margin="0,0,0,13" >
+            <Button Style="{StaticResource ResourceKey=StyleButton}">Удалить</Button>
+            <Button Style="{StaticResource ResourceKey=StyleButton}">Изменить</Button>
+            <Button Style="{StaticResource ResourceKey=StyleButton}">Сохранить</Button>
+        </StackPanel>
+    </Grid>
+</Page>

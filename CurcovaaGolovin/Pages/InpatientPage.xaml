@@ -1,0 +1,77 @@
+﻿<Page x:Class="CurcovaaGolovin.Pages.InpatientPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CurcovaaGolovin.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="InpatientPage">
+
+    <Grid>
+       
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="45*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Width="363" Height="42">
+            <TextBlock Style="{StaticResource MainTextBlock}" Height="20">Поиск</TextBlock>
+            <TextBox Style="{StaticResource MainTextBox}" Margin="8"  Width="255"></TextBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"  Grid.RowSpan="3" Grid.Row="1" >
+            <StackPanel Grid.Row="1">
+                <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Роженица</TextBlock>
+                <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Врач</TextBlock>
+                <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="7">Начало</TextBlock>
+
+            </StackPanel>
+            <StackPanel>
+                <TextBox Style="{StaticResource MainTextBox}" Width="175"></TextBox>
+                <TextBox Style="{StaticResource MainTextBox}" Width="175"></TextBox>
+                <DatePicker Style="{StaticResource DatePicerTextBox}" Margin="3" Width="175"></DatePicker>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10"></TextBlock>
+                    <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10"></TextBlock>
+                    <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="5">Конец</TextBlock>
+                </StackPanel>
+                <StackPanel>
+                    <TextBox Style="{StaticResource MainTextBox}" Opacity="0"></TextBox>
+                    <TextBox Style="{StaticResource MainTextBox}" Opacity="0"></TextBox>
+                    <DatePicker Style="{StaticResource DatePicerTextBox}" Margin="3" Width="175"></DatePicker>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="5">Описание</TextBlock>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBox Style="{StaticResource MainTextBox}" Height="110" TextWrapping="Wrap" Width="215"></TextBox>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2">
+            <TextBlock Margin="10,3,3,3">Расположение</TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <ListView Height="182" Width="602"  >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button x:Name="ChildbrithButton" Click="ChildbrithButton_Click" Style="{StaticResource ResourceKey=StyleButton}" HorizontalAlignment="Center" Margin="10,0,0,0" VerticalAlignment="Top">Роды</Button>
+            </StackPanel>
+
+        </StackPanel>
+        <StackPanel Grid.Row="2" VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Height="56" Margin="0,0,0,13" >
+            <Button Style="{StaticResource ResourceKey=StyleButton}">Удалить</Button>
+            <Button Style="{StaticResource ResourceKey=StyleButton}">Изменить</Button>
+            <Button Style="{StaticResource ResourceKey=StyleButton}">Сохранить</Button>
+        </StackPanel>
+    </Grid>
+</Page>

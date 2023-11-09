@@ -1,0 +1,136 @@
+﻿<Application x:Class="CurcovaaGolovin.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:CurcovaaGolovin"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style TargetType="PasswordBox" x:Key="PasswordTextBox">
+            <Setter Property="Width" Value="150"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="Height" Value="22"></Setter>
+        </Style>
+        <Style TargetType="DatePicker" x:Key="MainPicker">
+            <Setter Property="Height" Value="22"></Setter>
+            <Setter Property="Width" Value="150"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+
+        </Style>
+        <Style TargetType="TextBox" x:Key="MainTextBox">
+            <Setter Property="Height" Value="22"></Setter>
+            <Setter Property="Width" Value="150"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+        </Style>
+        <Style TargetType="ComboBox" x:Key="ComboBoxTextBox">
+            <Setter Property="Width" Value="150"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="MainTextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="Height" Value="35"></Setter>
+            <Setter Property="Margin" Value="7"></Setter>
+        </Style>
+      
+        <Style TargetType="Label" x:Key="LabelTextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="Height" Value="22"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+        </Style>
+        <Style TargetType="DatePicker" x:Key="DatePicerTextBox">
+
+            <Setter Property="Width" Value="150"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="StyleButton">
+            <Setter Property="Background" Value="#2196F3"/>
+            <!-- Цвет фона кнопки -->
+            <Setter Property="Foreground" Value="White"/>
+            <!-- Цвет текста кнопки -->
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <!-- Шрифт текста кнопки -->
+            <Setter Property="FontSize" Value="14"/>
+            <!-- Размер текста кнопки -->
+            <Setter Property="Padding" Value="10"/>
+            <!-- Внутренний отступ кнопки -->
+            <Setter Property="BorderThickness" Value="0"/>
+            <!-- Толщина границы кнопки -->
+            <Setter Property="Margin" Value="5"/>
+            <!-- Внешний отступ кнопки -->
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <!-- Выравнивание по горизонтали -->
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="120"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="Height" Value="30"></Setter>
+            <!-- Выравнивание по вертикали -->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding Background}"
+                    BorderThickness="2"
+                    CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#1565C0"/>
+                                <!-- Цвет фона кнопки при наведении -->
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#0D47A1"/>
+                                <!-- Цвет фона кнопки при нажатии -->
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="TextBoxLabel">
+            <!-- По умолчанию - скрыть TextBlock -->
+            <Setter Property="TextBlock.Visibility" Value="Hidden"/>
+            <Style.Triggers>
+                <!-- Показать TextBlock, если он пустой -->
+                <DataTrigger Binding="{Binding Text, ElementName=my_TextBox}"  Value="">
+                    <Setter Property="TextBlock.Visibility" Value="Visible"></Setter>
+                </DataTrigger>
+                <!-- Показать TextBlock, если он Null -->
+                <DataTrigger Binding="{Binding Text, ElementName=my_TextBox}"  Value="{x:Null}">
+                    <Setter Property="TextBlock.Visibility" Value="Visible"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="CustomCheckboxStyle" TargetType="{x:Type CheckBox}">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <BulletDecorator Background="Transparent">
+                            <BulletDecorator.Bullet>
+                                <Border x:Name="Border" Width="13" Height="13" Background="White" BorderBrush="Black" BorderThickness="1">
+                                    <ContentPresenter x:Name="ContentPresenter"/>
+                                </Border>
+                            </BulletDecorator.Bullet>
+                            <ContentPresenter Margin="4,0,0,0" VerticalAlignment="Center" RecognizesAccessKey="True"/>
+                        </BulletDecorator>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="Green"/>
+                                <Setter TargetName="Border" Property="BorderBrush" Value="Green"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="LightGray"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Border" Property="Opacity" Value="0.5"/>
+                                <Setter TargetName="ContentPresenter" Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Application.Resources>
+</Application>

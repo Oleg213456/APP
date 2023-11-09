@@ -1,0 +1,28 @@
+﻿<Page x:Class="CurcovaaGolovin.Pages.ReportsForThePeriod"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CurcovaaGolovin.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Отчеты за период">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"  Height="295" Width="490" Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="5">Дата начала</TextBlock>
+                <DatePicker Style="{StaticResource DatePicerTextBox}"></DatePicker>
+                <TextBlock Margin="5">Дата конца</TextBlock>
+                <DatePicker Style="{StaticResource DatePicerTextBox}"></DatePicker>
+            </StackPanel>
+            <StackPanel Margin="15">
+                <Button x:Name="WorkloadDoctors" Click="WorkloadDoctors_Click" Style="{StaticResource ResourceKey=StyleButton}"  Width="180">Загрузка врачей за период</Button>
+                <Button x:Name="WomanThePeriod" Click="WomanThePeriod_Click" Style="{StaticResource ResourceKey=StyleButton}" Width="180">Роженицы за период</Button>
+                <Button x:Name="ChildbirthThePeriod" Click="ChildbirthThePeriod_Click" Style="{StaticResource ResourceKey=StyleButton}" Width="180">Роды за период</Button>
+                <Button x:Name="Statistics" Click="Statistics_Click" Style="{StaticResource ResourceKey=StyleButton}" Width="180">Статистика за период</Button>
+            </StackPanel>
+            
+        </StackPanel>
+    </Grid>
+</Page>

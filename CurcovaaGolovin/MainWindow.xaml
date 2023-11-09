@@ -1,0 +1,25 @@
+﻿<Window x:Class="CurcovaaGolovin.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CurcovaaGolovin"
+        mc:Ignorable="d"
+        Title="{Binding ElementName=MainFrame,Path=Content.Title}" Height="470" Width="800" Background="Azure" MinWidth="800" MinHeight="450" Icon="/Resources/Programm.png">
+
+    <Viewbox >
+        <Grid Height="470" Width="850">
+            <StackPanel>
+                <Button x:Name="Back" Click="Back_Click" Style="{StaticResource ResourceKey=StyleButton}" Height="25" Width="27" Margin="8" HorizontalAlignment="Right">
+                    <Image  Source="/Resources/Back.png" Height="23" Width="22" HorizontalAlignment="Right"></Image>
+                </Button>
+            </StackPanel>
+            <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" ContentRendered="MainFrame_ContentRendered"/>
+            
+            <StackPanel  Background="White" HorizontalAlignment="Stretch" Height="20" VerticalAlignment="Bottom">
+                <TextBlock Text=" 2023 Все права защищены" HorizontalAlignment="Center" />
+            </StackPanel>
+        </Grid>
+    </Viewbox>
+
+</Window>
