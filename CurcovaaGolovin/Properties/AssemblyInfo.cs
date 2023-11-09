@@ -14,7 +14,6 @@ using System.Windows;
 [assembly: AssemblyProduct("CurcovaaGolovin")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
-
 [assembly: AssemblyCulture("")]
 
 // Установка значения False для параметра ComVisible делает типы в этой сборке невидимыми
