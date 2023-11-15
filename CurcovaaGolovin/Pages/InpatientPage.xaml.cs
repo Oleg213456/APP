@@ -29,5 +29,10 @@ namespace CurcovaaGolovin.Pages
         {
             NavigationService.Navigate(new ChildbirthPage());
         }
+
+        private void AddInpatient_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Успешно добавлено","Сообщение",MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }

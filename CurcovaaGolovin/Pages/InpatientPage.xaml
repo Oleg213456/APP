@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:CurcovaaGolovin.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="InpatientPage">
+      Title="Стационар">
 
     <Grid>
        
@@ -27,9 +27,9 @@
 
             </StackPanel>
             <StackPanel>
-                <TextBox Style="{StaticResource MainTextBox}" Width="175"></TextBox>
-                <TextBox Style="{StaticResource MainTextBox}" Width="175"></TextBox>
-                <DatePicker Style="{StaticResource DatePicerTextBox}" Margin="3" Width="175"></DatePicker>
+                <TextBox x:Name="Woman_tx" Style="{StaticResource MainTextBox}" Width="175"></TextBox>
+                <TextBox Name="Doctor" Style="{StaticResource MainTextBox}" Width="175"></TextBox>
+                <DatePicker Name="dataN" Style="{StaticResource DatePicerTextBox}" Margin="3" Width="175"></DatePicker>
             </StackPanel>
 
             <StackPanel Grid.Row="1" Orientation="Horizontal">
@@ -41,14 +41,14 @@
                 <StackPanel>
                     <TextBox Style="{StaticResource MainTextBox}" Opacity="0"></TextBox>
                     <TextBox Style="{StaticResource MainTextBox}" Opacity="0"></TextBox>
-                    <DatePicker Style="{StaticResource DatePicerTextBox}" Margin="3" Width="175"></DatePicker>
+                    <DatePicker Name="dataE" Style="{StaticResource DatePicerTextBox}" Margin="3" Width="175"></DatePicker>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Orientation="Horizontal">
                     <StackPanel>
                         <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="5">Описание</TextBlock>
                     </StackPanel>
                     <StackPanel>
-                        <TextBox Style="{StaticResource MainTextBox}" Height="110" TextWrapping="Wrap" Width="215"></TextBox>
+                        <TextBox Name="Opisanie" Style="{StaticResource MainTextBox}" Height="110" TextWrapping="Wrap" Width="215"></TextBox>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
@@ -71,7 +71,7 @@
         <StackPanel Grid.Row="2" VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Height="56" Margin="0,0,0,13" >
             <Button Style="{StaticResource ResourceKey=StyleButton}">Удалить</Button>
             <Button Style="{StaticResource ResourceKey=StyleButton}">Изменить</Button>
-            <Button Style="{StaticResource ResourceKey=StyleButton}">Сохранить</Button>
+            <Button Name="AddInpatient" Click="AddInpatient_Click"  Style="{StaticResource ResourceKey=StyleButton}">Сохранить</Button>
         </StackPanel>
     </Grid>
 </Page>

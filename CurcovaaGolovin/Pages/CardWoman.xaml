@@ -19,7 +19,7 @@
             <TextBox Style="{StaticResource MainTextBox}" Margin="8"  Width="255"></TextBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal"  Grid.RowSpan="3" Grid.Row="1" >
-            <StackPanel Grid.Row="1">
+            <StackPanel Grid.Row="1">  
                 <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Карточка №</TextBlock>
                 <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Фамилия</TextBlock>
                 <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Имя</TextBlock>
