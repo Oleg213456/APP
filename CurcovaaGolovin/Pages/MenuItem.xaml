@@ -34,7 +34,7 @@
             <TextBlock FontSize="30" HorizontalAlignment="Center" Margin="5" Foreground="#0D47A1">Меню</TextBlock>
             <Button x:Name="CardKidButton" Click="CardKidButton_Click" Style="{StaticResource ResourceKey=StyleButton}"  Width="170">Карточка Ребенка</Button>
             <Button x:Name="CardWomanButton" Click="CardWomanButton_Click" Style="{StaticResource ResourceKey=StyleButton}" Width="172">Карточка Роженицы</Button>
-            <Button x:Name="ChildbirthButton" Click="ChildbirthButton_Click" Style="{StaticResource ResourceKey=StyleButton}" Width="172">Стационар</Button>
+            <Button x:Name="InpatientButton" Click="InpatientButton_Click"   Style="{StaticResource ResourceKey=StyleButton}" Width="172">Стационар</Button>
             <Button x:Name="ReportsForThePeriodButton" Click="ReportsForThePeriodButton_Click" Style="{StaticResource ResourceKey=StyleButton}" Width="172">Отчеты за период</Button>
         </StackPanel>
     </Grid>
