@@ -20,7 +20,7 @@
                 <TextBlock x:Name="my_TextBlock" Foreground="LightGray" Margin="5,3" Text="Введите логин" Style="{StaticResource TextBoxLabel}">
                 </TextBlock>
                 <!-- TextBox для ввода -->
-                <TextBox Name="my_TextBox" FontSize="18" Background="{x:Null}" />
+                <TextBox Name="LoginTextBox" FontSize="18" Background="{x:Null}" />
             </Grid>
             <Grid  Background="White" Margin="10" Height="26">
                 <TextBlock x:Name="tblPasswordHint"  Width="300" FontFamily="Rubik" VerticalAlignment="Center"

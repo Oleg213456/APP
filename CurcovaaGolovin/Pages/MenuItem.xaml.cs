@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CurcovaaGolovin.DataBaseControler;
 
 namespace CurcovaaGolovin.Pages
 {
@@ -20,11 +21,17 @@ namespace CurcovaaGolovin.Pages
     /// </summary>
     public partial class MenuItem : Page
     {
-        public MenuItem()
+        Authorization NewUser = new Authorization();
+        public MenuItem(Authorization user)
         {
             InitializeComponent();
-        }
+            if (user.Role_ID == 1)
+            {
+                RoleTextBlock.Text = DataBase.entities.Role.Select(c => new { c.Role_Name }).ToString();
+            }
 
+        }            
+        
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
