@@ -18,7 +18,7 @@
             <TextBlock Style="{StaticResource MainTextBlock}" Height="20">Поиск карточки</TextBlock>
             <TextBox Style="{StaticResource MainTextBox}" Margin="8"  Width="255"></TextBox>
         </StackPanel>
-        <StackPanel Orientation="Horizontal"  Grid.RowSpan="3" Grid.Row="1" >
+        <StackPanel Orientation="Horizontal"   Grid.Row="1" >
             <StackPanel Grid.Row="1">
                 <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Начало</TextBlock>
                 <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Конец</TextBlock>
@@ -35,11 +35,23 @@
 
                 <StackPanel Grid.Row="1" Orientation="Horizontal">
                     <StackPanel>
-                        <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Описание</TextBlock>
+                        <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Роды произошли</TextBlock>
+                        <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Вид родов</TextBlock>
+                        <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Опиратив.пособие</TextBlock>
                     </StackPanel>
                     <StackPanel>
-                        <TextBox Style="{StaticResource MainTextBox}" Height="110" TextWrapping="Wrap" Width="239"></TextBox>
+                        <TextBox Style="{StaticResource MainTextBox}" Width="175" ></TextBox>
+                        <TextBox Style="{StaticResource MainTextBox}" Width="175" ></TextBox>
+                        <TextBox Style="{StaticResource MainTextBox}" Width="175" TextWrapping="Wrap" ></TextBox>
                     </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Описание</TextBlock>
+                </StackPanel>
+                <StackPanel>
+                    <TextBox Style="{StaticResource MainTextBox}" Width="119" Height="109" ></TextBox>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

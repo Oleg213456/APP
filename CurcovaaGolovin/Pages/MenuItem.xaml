@@ -24,8 +24,8 @@
                     <TextBlock FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center" >Должность:</TextBlock>
                 </StackPanel>
                 <StackPanel>
-                    <TextBlock FontSize="15" Margin="10,0,10,0" Text="{Binding Authorization.UserName}" ></TextBlock>
-                    <TextBlock FontSize="15" Margin="10,0,10,0" x:Name="RoleTextBlock" ></TextBlock>
+                    <TextBlock FontSize="15" Margin="10,0,10,0"  ></TextBlock>
+                    <TextBlock FontSize="15" Margin="10,0,10,0" Text="{Binding Role.Role_Name}" x:Name="RoleTextBlock" ></TextBlock>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

@@ -93,11 +93,11 @@
             <Setter Property="TextBlock.Visibility" Value="Hidden"/>
             <Style.Triggers>
                 <!-- Показать TextBlock, если он пустой -->
-                <DataTrigger Binding="{Binding Text, ElementName=my_TextBox}"  Value="">
+                <DataTrigger Binding="{Binding Text, ElementName=LoginTextBox}"  Value="">
                     <Setter Property="TextBlock.Visibility" Value="Visible"></Setter>
                 </DataTrigger>
                 <!-- Показать TextBlock, если он Null -->
-                <DataTrigger Binding="{Binding Text, ElementName=my_TextBox}"  Value="{x:Null}">
+                <DataTrigger Binding="{Binding Text, ElementName=LoginTextBox}"  Value="{x:Null}">
                     <Setter Property="TextBlock.Visibility" Value="Visible"></Setter>
                 </DataTrigger>
             </Style.Triggers>

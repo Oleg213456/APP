@@ -46,8 +46,10 @@
                     <StackPanel>
                         <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Пол</TextBlock>
                         <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Состояние</TextBlock>
+                        <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Местность</TextBlock>
                     </StackPanel>
                     <StackPanel>
+                        <ComboBox Style="{StaticResource ComboBoxTextBox}" Margin="10"></ComboBox>
                         <ComboBox Style="{StaticResource ComboBoxTextBox}" Margin="10"></ComboBox>
                         <ComboBox Style="{StaticResource ComboBoxTextBox}" Margin="10"></ComboBox>
                     </StackPanel>

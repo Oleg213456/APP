@@ -25,11 +25,7 @@ namespace CurcovaaGolovin.Pages
         public MenuItem(Authorization user)
         {
             InitializeComponent();
-            if (user.Role_ID == 1)
-            {
-                RoleTextBlock.Text = DataBase.entities.Role.Select(c => new { c.Role_Name }).ToString();
-            }
-
+            this.DataContext = user;
         }            
         
 
