@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:CurcovaaGolovin.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      Loaded="Page_Loaded" 
       Title="ChildbirthPage">
 
     <Grid>
@@ -16,7 +17,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Width="425" Height="42">
             <TextBlock Style="{StaticResource MainTextBlock}" Height="20">Поиск карточки</TextBlock>
-            <TextBox Style="{StaticResource MainTextBox}" Margin="8"  Width="255"></TextBox>
+            <TextBox Style="{StaticResource MainTextBox}" x:Name="SearchTextBox" TextChanged="SearchTextBox_TextChanged" Margin="8"  Width="255"></TextBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal"   Grid.Row="1" >
             <StackPanel Grid.Row="1">
@@ -58,18 +59,40 @@
 
         <StackPanel Grid.Row="2">
             <TextBlock Margin="10,3,3,3">Список рожениц</TextBlock>
-            <ListView Height="182" >
+            <ListView Height="182" x:Name="ChilBrirthListView" SelectionChanged="ChilBrirthListView_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Начало родов: "></TextBlock>
+                                <TextBlock Text="{Binding StringFormat='{}MM/dd/yyyy H:mm:ss', Path=StartChildbirth}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Конец родов: "></TextBlock>
+                                <TextBlock Text="{Binding StringFormat='{}MM/dd/yyyy H:mm:ss', Path=EndChildbirth}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="ФИО Роженицы:"></TextBlock>
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{} {0} {1} {2}">
+                                            <Binding Path="Inpatient.WomanInLabor.NameWomanInLabor"></Binding>
+                                            <Binding Path="Inpatient.WomanInLabor.SurnameWomanInLabor"></Binding>
+                                            <Binding Path="Inpatient.WomanInLabor.MiddleNameWomanInLabor"></Binding>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+                            <TextBlock Text="{Binding StringFormat=Вид родов: {0} ,Path=Birth_Type}"></TextBlock>
+                        </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
         <StackPanel Grid.Row="2" VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Height="56" Margin="0,0,0,13" >
-            <Button Style="{StaticResource ResourceKey=StyleButton}">Удалить</Button>
-            <Button Style="{StaticResource ResourceKey=StyleButton}">Изменить</Button>
-            <Button Style="{StaticResource ResourceKey=StyleButton}">Сохранить</Button>
+            <Button Style="{StaticResource ResourceKey=StyleButton}" x:Name="DeleteButton" Click="DeleteButton_Click">Удалить</Button>
+            <Button Style="{StaticResource ResourceKey=StyleButton}" x:Name="EditButton" Click="EditButton_Click">Изменить</Button>
+            <Button Style="{StaticResource ResourceKey=StyleButton}" x:Name="SaveButton" Click="SaveButton_Click">Сохранить</Button>
         </StackPanel>
     </Grid>
 </Page>

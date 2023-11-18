@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:CurcovaaGolovin.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      Loaded="Page_Loaded"
       Title="Карточка роженицы">
 
     <Grid Margin="0,0,-69,0">
@@ -16,7 +17,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Width="425" Height="42" Margin="375,0,0,0">
             <TextBlock Margin="60,0,0,0" Style="{StaticResource MainTextBlock}" Height="20">Поиск карточки</TextBlock>
-            <TextBox Style="{StaticResource MainTextBox}" Margin="8"  Width="255"></TextBox>
+            <TextBox Style="{StaticResource MainTextBox}" x:Name="SearchTextBox" TextChanged="SearchTextBox_TextChanged" Margin="8"  Width="255"></TextBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal"  Grid.RowSpan="2" Grid.Row="1" >
             <StackPanel Grid.Row="1">
@@ -66,18 +67,47 @@
 
         <StackPanel Grid.Row="2">
             <TextBlock Margin="30,3,3,3">Список рожениц</TextBlock>
-            <ListView Height="139" Width="792" Margin="0,0,50,0" >
+            <ListView x:Name="WomanListView" SelectionChanged="WomanListView_SelectionChanged" Height="139" Width="792" Margin="0,0,50,0" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
-
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding StringFormat=Номер карты: {0}, Path=IDWomanInLabor}"></TextBlock>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="ФИО:"></TextBlock>
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{} {0} {1} {2}">
+                                            <Binding Path="NameWomanInLabor"></Binding>
+                                            <Binding Path="SurnameWomanInLabor"></Binding>
+                                            <Binding Path="MiddleNameWomanInLabor"></Binding>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding StringFormat=Срок беременности: {0} ,Path=Gestation_Period}"></TextBlock>
+                                <TextBlock Margin="5,0,0,0" Text="недель"></TextBlock>
+                            </StackPanel>
+                            <TextBlock Text="{Binding StringFormat=Кол-во беременностей: {0},Path=Gestation_Count}"></TextBlock>
+                            <TextBlock Text="{Binding StringFormat=Номер телефона: {0},Path=PhoneWomanInLabor}"></TextBlock>
+                            <TextBlock Text="{Binding StringFormat=Адрес: {0},Path=Address}"></TextBlock>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Дата рождения: "></TextBlock>
+                                <TextBlock Text="{Binding StringFormat='{}dd.MM.yyyy', Path=DateOfBirth}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Дата выписки: "></TextBlock>
+                                <TextBlock Text="{Binding StringFormat='{}dd.MM.yyyy', Path=DateofDischarge}"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
         <StackPanel Grid.Row="2" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Center" Height="111" Margin="0,132,0,0" Width="420" >
-            <Button Style="{StaticResource ResourceKey=StyleButton}">Удалить</Button>
-            <Button Style="{StaticResource ResourceKey=StyleButton}">Изменить</Button>
-            <Button Style="{StaticResource ResourceKey=StyleButton}">Сохранить</Button>
+            <Button Style="{StaticResource ResourceKey=StyleButton}" x:Name="DeleteButton" Click="DeleteButton_Click">Удалить</Button>
+            <Button Style="{StaticResource ResourceKey=StyleButton}" x:Name="EditeButton" Click="EditeButton_Click">Изменить</Button>
+            <Button Style="{StaticResource ResourceKey=StyleButton}" x:Name="SaveButton" Click="SaveButton_Click">Сохранить</Button>
         </StackPanel>
     </Grid>
 </Page>
