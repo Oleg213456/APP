@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using Word = Microsoft.Office.Interop.Word;
 namespace CurcovaaGolovin.Pages
 {
     /// <summary>
@@ -130,6 +130,93 @@ namespace CurcovaaGolovin.Pages
             {
                 NavigationService.Navigate(new InpatientPage(inpatient));
                 InpatientListView.ItemsSource = DataBase.entities.Inpatient.ToList();
+            }
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (inpatient != null)
+                {
+                    var item = InpatientListView.SelectedItem as Inpatient;
+                    Word._Application wApp = new Word.Application();
+                    Word._Document wDoc = wApp.Documents.Add();
+                    wApp.Visible = true;
+                    wDoc.Activate();
+                    var SubDann = wDoc.Content.Paragraphs.Add();
+                    SubDann.Range.Text =
+                    $"\t\t\t\t\t ОБМЕННАЯ КАРТА.\n" +
+                    $"\t (сведение родильного дома, родильного отделения больницы о родильнице)\n" +
+                    $"\t\t\t\t\tДата выдачи «{item.WomanInLabor.DateofDischarge}»\n" +
+                    $"\t 1.Фамилия,имя,отчество: {item.WomanInLabor.SurnameWomanInLabor} {item.WomanInLabor.NameWomanInLabor} {item.WomanInLabor.MiddleNameWomanInLabor} \n" +
+                    $"\t 2.Возраст: {item.WomanInLabor.WomanAge}  \n" +
+                    $"\t 3.Адрес: {item.WomanInLabor.Address} \n" +
+                    $"\t 4.Дата поступления: {item.StartInpatient}. Роды произошли: {item.Childbirth.Birth_Place} \n" +
+                    $"\t 5.Особенности течения родов: {item.Childbirth.Description} \n" +
+                    $"\t 6.Оперативные пособия: {item.Childbirth.Operational_manuals}\n" +
+                    $"\t 7.Обезболивание применялось: ДА \n" +
+                    $"\t 8.Течение последнего периода:{item.WomanInLabor.Post_birth_time} \n" +
+                    $"\t 9.Выписана: {item.EndInpatient} \n" +
+                    $"\t 10.Состояние матери при выписки: {item.WomanInLabor.SpecialMarks} \n" +
+                    $"\n\n"
+                    + $"\t Подпись врача _______________\n";
+                    wDoc.SaveAs2($@"{Environment.CurrentDirectory}\1.doc");
+                    wDoc.SaveAs2($@"{Environment.CurrentDirectory}\1.pdf", Microsoft.Office.Interop.Word.WdSaveFormat.wdFormatPDF);
+                }
+                else
+                {
+                    MessageBox.Show("Выбирете запись", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка");
+            }
+        
+    }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (inpatient != null)
+                {
+                    var item = InpatientListView.SelectedItem as Inpatient;
+                    Word._Application wApp = new Word.Application();
+                    Word._Document wDoc = wApp.Documents.Add();
+                    wApp.Visible = true;
+                    wDoc.Activate();
+                    var SubDann = wDoc.Content.Paragraphs.Add();
+                    SubDann.Range.Text =
+                    $"\t\t\t\t\t ОБМЕННАЯ КАРТА.\n" +
+                    $"\t (сведение родильного дома, родильного отделения больницы о новорожденном)\n" +
+                    $"\t\t\t\t\t Дата выдачи «{item.WomanInLabor.DateofDischarge}»\n" +
+                    $"\t 1.Фамилия,имя,отчество родительницы:{item.WomanInLabor.SurnameWomanInLabor} {item.WomanInLabor.NameWomanInLabor} {item.WomanInLabor.MiddleNameWomanInLabor} \n" +
+                    $"\t 2.Адрес: {item.WomanInLabor.Address} \n" +
+                    $"\t 3.Роды произошли: {item.Childbirth.Birth_Place} \n" +
+                    $"\t 4.От какой беременности по счете родился ребенок {item.WomanInLabor.Gestation_Count} со сроком беременности \t\t\t {item.WomanInLabor.Gestation_Period} недель. Предшествуюущие беременности закончились:{item.WomanInLabor.SpecialMarks} \n" +
+                    $"\t 5.Вид родов: {item.Childbirth.Birth_Type} \n" +
+                    $"\t 6.Особенности течения родов:{item.Childbirth.Description} \n" +
+                    $"\t 7.Обезболивание применялось: ДА \n" +
+                    $"\t 8.Течение последнего периода:{item.WomanInLabor.Post_birth_time} \n" +
+                    $"\t 9.Мать выписана:{item.EndInpatient.ToString("MM-dd-yyyy")} \n" +
+                    $"\t 10.Состояние матери при выписки: {item.WomanInLabor.SpecialMarks} \n" +
+                    $"\n\n"
+                    + $"\t Подпись врача _______________\n";
+                    wDoc.SaveAs2($@"{Environment.CurrentDirectory}\1.doc");
+                    wDoc.SaveAs2($@"{Environment.CurrentDirectory}\1.pdf", Microsoft.Office.Interop.Word.WdSaveFormat.wdFormatPDF);
+                }
+                else
+                {
+                    MessageBox.Show("Выбирете запись", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка");
             }
         }
     }
