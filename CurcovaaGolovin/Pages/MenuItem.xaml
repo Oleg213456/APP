@@ -30,12 +30,11 @@
             </StackPanel>
         </StackPanel>
 
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="304,9.6,304,66.6" Height="295" Width="192" Grid.Row="1">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="295" Width="192" Grid.Row="1">
             <TextBlock FontSize="30" HorizontalAlignment="Center" Margin="5" Foreground="#0D47A1">Меню</TextBlock>
-            <Button x:Name="CardKidButton" Click="CardKidButton_Click" Style="{StaticResource ResourceKey=StyleButton}"  Width="170">Карточка Ребенка</Button>
-            <Button x:Name="CardWomanButton" Click="CardWomanButton_Click" Style="{StaticResource ResourceKey=StyleButton}" Width="172">Карточка Роженицы</Button>
-            <Button x:Name="InpatientButton" Click="InpatientButton_Click"   Style="{StaticResource ResourceKey=StyleButton}" Width="172">Стационар</Button>
-            <Button x:Name="ReportsForThePeriodButton" Click="ReportsForThePeriodButton_Click" Style="{StaticResource ResourceKey=StyleButton}" Width="172">Отчеты за период</Button>
+            <Button x:Name="CardWomanButton" Click="CardWomanButton_Click" Height="40" Style="{StaticResource ResourceKey=StyleButton}" Width="172">Карточка Роженицы</Button>
+            <Button x:Name="InpatientButton" Click="InpatientButton_Click" Height="40"  Style="{StaticResource ResourceKey=StyleButton}" Width="172">Стационар</Button>
+            <Button x:Name="CardKidButton" Click="CardKidButton_Click" Height="40" Style="{StaticResource ResourceKey=StyleButton}" Width="170">Карточка Ребенка</Button>
         </StackPanel>
     </Grid>
 </Page>

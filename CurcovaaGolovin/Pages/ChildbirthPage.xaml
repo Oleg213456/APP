@@ -27,11 +27,26 @@
 
             </StackPanel>
             <StackPanel>
-                <DatePicker Style="{StaticResource DatePicerTextBox}" Margin="10" Width="175"></DatePicker>
-                <DatePicker Style="{StaticResource DatePicerTextBox}" Margin="10"  Width="175"></DatePicker>
-                <TextBox Style="{StaticResource MainTextBox}" Width="175" ></TextBox>
+                <DatePicker x:Name="StatDate" Text="{Binding StartChildbirth}" Style="{StaticResource DatePicerTextBox}" Margin="10" Width="175"></DatePicker>
+                <DatePicker x:Name="EndDate" Text="{Binding EndChildbirth}" Style="{StaticResource DatePicerTextBox}" Margin="10"  Width="175"></DatePicker>
+                <ComboBox Style="{StaticResource ComboBoxTextBox}" x:Name="MotherComboBox" SelectedItem="{Binding Inpatient.WomanInLabor}" SelectedIndex="0" IsEditable="False" Width="175" >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{} {0} {1} {2}">
+                                            <Binding Path="NameWomanInLabor"></Binding>
+                                            <Binding Path="SurnameWomanInLabor"></Binding>
+                                            <Binding Path="MiddleNameWomanInLabor"></Binding>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
             </StackPanel>
-
             <StackPanel Grid.Row="1" Orientation="Horizontal">
 
                 <StackPanel Grid.Row="1" Orientation="Horizontal">
@@ -41,9 +56,9 @@
                         <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Опиратив.пособие</TextBlock>
                     </StackPanel>
                     <StackPanel>
-                        <TextBox Style="{StaticResource MainTextBox}" Width="175" ></TextBox>
-                        <TextBox Style="{StaticResource MainTextBox}" Width="175" ></TextBox>
-                        <TextBox Style="{StaticResource MainTextBox}" Width="175" TextWrapping="Wrap" ></TextBox>
+                        <TextBox Style="{StaticResource MainTextBox}" x:Name="Birth_PlaceTextBox" Text="{Binding Birth_Place}" Width="175" ></TextBox>
+                        <TextBox Style="{StaticResource MainTextBox}" x:Name="Birth_TypeTextBox" Text="{Binding Birth_Type}" Width="175" ></TextBox>
+                        <TextBox Style="{StaticResource MainTextBox}" x:Name="Operational_manualsTextBox" Text="{Binding Operational_manuals}" Width="175" TextWrapping="Wrap" ></TextBox>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
@@ -52,24 +67,24 @@
                     <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Описание</TextBlock>
                 </StackPanel>
                 <StackPanel>
-                    <TextBox Style="{StaticResource MainTextBox}" Width="119" Height="109" ></TextBox>
+                    <TextBox Style="{StaticResource MainTextBox}" x:Name="DescriptionTextBox" Text="{Binding Description}" Width="119" Height="109" ></TextBox>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
 
-        <StackPanel Grid.Row="2">
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
             <TextBlock Margin="10,3,3,3">Список рожениц</TextBlock>
-            <ListView Height="182" x:Name="ChilBrirthListView" SelectionChanged="ChilBrirthListView_SelectionChanged">
+            <ListView Margin="-95,0,0,30" Width="775" Height="182" x:Name="ChilBrirthListView" SelectionChanged="ChilBrirthListView_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Начало родов: "></TextBlock>
-                                <TextBlock Text="{Binding StringFormat='{}MM/dd/yyyy H:mm:ss', Path=StartChildbirth}"></TextBlock>
+                                <TextBlock Text="{Binding StringFormat='{}dd.mm.yyyy, HH:mm', Path=StartChildbirth}"></TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Конец родов: "></TextBlock>
-                                <TextBlock Text="{Binding StringFormat='{}MM/dd/yyyy H:mm:ss', Path=EndChildbirth}"></TextBlock>
+                                <TextBlock Text="{Binding StringFormat='{}dd.mm.yyyy, HH:mm', Path=EndChildbirth}"></TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="ФИО Роженицы:"></TextBlock>
@@ -89,8 +104,7 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
-        <StackPanel Grid.Row="2" VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Height="56" Margin="0,0,0,13" >
-            <Button Style="{StaticResource ResourceKey=StyleButton}" x:Name="DeleteButton" Click="DeleteButton_Click">Удалить</Button>
+        <StackPanel Grid.Row="2" VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Height="56" Margin="0,0,0,9" >
             <Button Style="{StaticResource ResourceKey=StyleButton}" x:Name="EditButton" Click="EditButton_Click">Изменить</Button>
             <Button Style="{StaticResource ResourceKey=StyleButton}" x:Name="SaveButton" Click="SaveButton_Click">Сохранить</Button>
         </StackPanel>

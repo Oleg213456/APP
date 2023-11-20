@@ -43,21 +43,19 @@ namespace CurcovaaGolovin.Pages
             NavigationService.Navigate(new ReportsForThePeriod());
         }
 
-    
-
         private void CardWomanButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new CardWoman());
         }
 
-        private void CardKidButton_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new CardKid());
-        }
-
         private void InpatientButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new InpatientPage());
+        }
+
+        private void CardKidButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new CardKid());
         }
     }
 }

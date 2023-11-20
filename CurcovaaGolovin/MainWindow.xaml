@@ -15,10 +15,7 @@
                 </Button>
             </StackPanel>
             <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" ContentRendered="MainFrame_ContentRendered"/>
-            
-            <StackPanel  Background="White" HorizontalAlignment="Stretch" Height="20" VerticalAlignment="Bottom">
-                <!--<TextBlock Text=" 2023 Все права защищены" HorizontalAlignment="Center" />-->
-            </StackPanel>
+           
         </Grid>
     </Viewbox>
 

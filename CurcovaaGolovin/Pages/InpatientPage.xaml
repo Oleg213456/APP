@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:CurcovaaGolovin.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      Loaded="Page_Loaded"
       Title="Стационар">
 
     <Grid>
@@ -17,38 +18,67 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Width="363" Height="42">
             <TextBlock Style="{StaticResource MainTextBlock}" Height="20">Поиск</TextBlock>
-            <TextBox Style="{StaticResource MainTextBox}" Margin="8"  Width="255"></TextBox>
+            <TextBox Style="{StaticResource MainTextBox}" x:Name="SearchTextBox" TextChanged="SearchTextBox_TextChanged" Margin="8"  Width="255"></TextBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal"  Grid.RowSpan="3" Grid.Row="1" >
             <StackPanel Grid.Row="1">
                 <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Роженица</TextBlock>
-                <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Врач</TextBlock>
-                <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="7">Начало</TextBlock>
+                <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10,0,0,0">Врач</TextBlock>
+                <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10,15,0,0">Начало</TextBlock>
 
             </StackPanel>
             <StackPanel>
-                <TextBox x:Name="Woman_tx" Style="{StaticResource MainTextBox}" Width="175"></TextBox>
-                <TextBox Name="Doctor" Style="{StaticResource MainTextBox}" Width="175"></TextBox>
-                <DatePicker Name="dataN" Style="{StaticResource DatePicerTextBox}" Margin="3" Width="175"></DatePicker>
+                <ComboBox SelectedItem="{Binding WomanInLabor}" SelectedIndex="0" IsEditable="False" x:Name="Woman_tx" Style="{StaticResource ComboBoxTextBox}" Width="175">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{} {0} {1} {2}">
+                                            <Binding Path="NameWomanInLabor"></Binding>
+                                            <Binding Path="SurnameWomanInLabor"></Binding>
+                                            <Binding Path="MiddleNameWomanInLabor"></Binding>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <ComboBox Name="Doctor" SelectedItem="{Binding Doctor}" IsEditable="False" SelectedIndex="0" Style="{StaticResource ComboBoxTextBox}" Margin="0,7,0,0" Width="175">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{} {0} {1} {2}">
+                                            <Binding Path="SurnameDoctor"></Binding>
+                                            <Binding Path="NameDoctor"></Binding>
+                                            <Binding Path="MiddleNameDoctor"></Binding>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <DatePicker x:Name="DateN" Style="{StaticResource DatePicerTextBox}" Text="{Binding StartInpatient}" Margin="0,15,0,0" Width="175"></DatePicker>
             </StackPanel>
-
             <StackPanel Grid.Row="1" Orientation="Horizontal">
                 <StackPanel>
                     <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10"></TextBlock>
                     <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10"></TextBlock>
-                    <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="5">Конец</TextBlock>
+                    <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="5,0,5,10">Конец</TextBlock>
                 </StackPanel>
                 <StackPanel>
-                    <TextBox Style="{StaticResource MainTextBox}" Opacity="0"></TextBox>
-                    <TextBox Style="{StaticResource MainTextBox}" Opacity="0"></TextBox>
-                    <DatePicker Name="dataE" Style="{StaticResource DatePicerTextBox}" Margin="3" Width="175"></DatePicker>
+                    <DatePicker Name="dataE" Style="{StaticResource DatePicerTextBox}" Text="{Binding EndInpatient}" Margin="5,76,30,0" Width="175"></DatePicker>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Orientation="Horizontal">
                     <StackPanel>
                         <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="5">Описание</TextBlock>
                     </StackPanel>
                     <StackPanel>
-                        <TextBox Name="Opisanie" Style="{StaticResource MainTextBox}" Height="110" TextWrapping="Wrap" Width="215"></TextBox>
+                        <TextBox Name="Opisanie" Text="{Binding Description}" Style="{StaticResource MainTextBox}" Height="110" TextWrapping="Wrap" Width="215"></TextBox>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
@@ -57,10 +87,43 @@
         <StackPanel Grid.Row="2">
             <TextBlock Margin="10,3,3,3">Расположение</TextBlock>
             <StackPanel Orientation="Horizontal">
-                <ListView Height="182" Width="602"  >
+                <ListView x:Name="InpatientListView" SelectionChanged="InpatientListView_SelectionChanged" Height="182" Width="602"  >
                     <ListView.ItemTemplate>
                         <DataTemplate>
-
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="ФИО Роженицы:"></TextBlock>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{} {0} {1} {2}">
+                                                <Binding Path="WomanInLabor.NameWomanInLabor"></Binding>
+                                                <Binding Path="WomanInLabor.SurnameWomanInLabor"></Binding>
+                                                <Binding Path="WomanInLabor.MiddleNameWomanInLabor"></Binding>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Заселение в стационар: "></TextBlock>
+                                    <TextBlock Text="{Binding StringFormat='{}dd.MM.yyyy', Path=StartInpatient}"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Выписка: "></TextBlock>
+                                    <TextBlock Text="{Binding StringFormat='{}dd.MM.yyyy', Path=EndInpatient}"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="ФИО Врача:"></TextBlock>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{} {0} {1} {2}">
+                                                <Binding Path="Doctor.SurnameDoctor"></Binding>
+                                                <Binding Path="Doctor.NameDoctor"></Binding>
+                                                <Binding Path="Doctor.MiddleNameDoctor"></Binding>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </StackPanel>
+                            </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
@@ -69,8 +132,8 @@
 
         </StackPanel>
         <StackPanel Grid.Row="2" VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Height="56" Margin="0,0,0,13" >
-            <Button Style="{StaticResource ResourceKey=StyleButton}">Удалить</Button>
-            <Button Style="{StaticResource ResourceKey=StyleButton}">Изменить</Button>
+
+            <Button x:Name="EditeButton" Click="EditeButton_Click" Style="{StaticResource ResourceKey=StyleButton}">Изменить</Button>
             <Button Name="AddInpatient" Click="AddInpatient_Click"  Style="{StaticResource ResourceKey=StyleButton}">Сохранить</Button>
         </StackPanel>
     </Grid>

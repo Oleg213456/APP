@@ -21,18 +21,18 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal"  Grid.RowSpan="2" Grid.Row="1" >
             <StackPanel Grid.Row="1">
-                <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Карточка №</TextBlock>
                 <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Фамилия</TextBlock>
                 <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Имя</TextBlock>
                 <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Возраст</TextBlock>
                 <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Срок беременности</TextBlock>
+                <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Адрес</TextBlock>
             </StackPanel>
             <StackPanel>
-                <TextBox Style="{StaticResource MainTextBox}"></TextBox>
-                <TextBox Style="{StaticResource MainTextBox}"></TextBox>
-                <TextBox Style="{StaticResource MainTextBox}"></TextBox>
-                <TextBox Style="{StaticResource MainTextBox}"></TextBox>
-                <TextBox Style="{StaticResource MainTextBox}"></TextBox>
+                <TextBox x:Name="SurnameTextBox" Text="{Binding SurnameWomanInLabor}" Style="{StaticResource MainTextBox}"></TextBox>
+                <TextBox x:Name="NameTextBox" Text="{Binding NameWomanInLabor}" Style="{StaticResource MainTextBox}"></TextBox>
+                <TextBox x:Name="AgeTextBox" Text="{Binding WomanAge}" Style="{StaticResource MainTextBox}"></TextBox>
+                <TextBox x:Name="PeriodTextBox" Text="{Binding Gestation_Period}" Style="{StaticResource MainTextBox}"></TextBox>
+                <TextBox x:Name="AdresTextBox" Text="{Binding Address}" Style="{StaticResource MainTextBox}"></TextBox>
             </StackPanel>
 
             <StackPanel Grid.Row="1" Orientation="Horizontal">
@@ -44,11 +44,11 @@
                     <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Беременность по счету</TextBlock>
                 </StackPanel>
                 <StackPanel>
-                    <TextBox Style="{StaticResource MainTextBox}" ></TextBox>
-                    <DatePicker  Style="{StaticResource DatePicerTextBox}" Margin="8" Width="152"></DatePicker>
-                    <TextBox Style="{StaticResource MainTextBox}" ></TextBox>
-                    <TextBox Style="{StaticResource MainTextBox}" ></TextBox>
-                    <TextBox Style="{StaticResource MainTextBox}" ></TextBox>
+                    <TextBox Text="{Binding MiddleNameWomanInLabor}" Style="{StaticResource MainTextBox}" x:Name="MidleNameTextBox" ></TextBox>
+                    <DatePicker Text="{Binding DateOfBirth}"  Style="{StaticResource DatePicerTextBox}" x:Name="BirthDataPicker" Margin="8" Width="152"></DatePicker>
+                    <TextBox Text="{Binding PhoneWomanInLabor}" Style="{StaticResource MainTextBox}" x:Name="PhoneTextBox" ></TextBox>
+                    <TextBox Text="{Binding Family_State}" Style="{StaticResource MainTextBox}" x:Name="FamilyTextBox" ></TextBox>
+                    <TextBox Text="{Binding Gestation_Count}" Style="{StaticResource MainTextBox}" x:Name="CountBirthTextBox" ></TextBox>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Orientation="Horizontal">
                     <StackPanel Width="99">
@@ -57,9 +57,9 @@
                         <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10,10,0,0">Пос.род.период</TextBlock>
                     </StackPanel>
                     <StackPanel>
-                        <TextBox Style="{StaticResource MainTextBox}" Height="110" TextWrapping="Wrap" Width="114"></TextBox>
-                        <DatePicker Name="dataE" Style="{StaticResource DatePicerTextBox}" Margin="3" Width="114"></DatePicker>
-                        <TextBox Style="{StaticResource MainTextBox}" Width="114" ></TextBox>
+                        <TextBox Text="{Binding SpecialMarks}" Style="{StaticResource MainTextBox}" Height="110" TextWrapping="Wrap" x:Name="DiscriptionTextBox" Width="114"></TextBox>
+                        <DatePicker Text="{Binding DateofDischarge}" Style="{StaticResource DatePicerTextBox}" Margin="3" x:Name="DateofDischargeDatapicer" Width="114"></DatePicker>
+                        <TextBox Text="{Binding Post_birth_time}" x:Name="PeriodBirthTextBox" Style="{StaticResource MainTextBox}" Width="114" ></TextBox>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
@@ -104,8 +104,7 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
-        <StackPanel Grid.Row="2" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Center" Height="111" Margin="0,132,0,0" Width="420" >
-            <Button Style="{StaticResource ResourceKey=StyleButton}" x:Name="DeleteButton" Click="DeleteButton_Click">Удалить</Button>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Margin="0,100,0,3" >
             <Button Style="{StaticResource ResourceKey=StyleButton}" x:Name="EditeButton" Click="EditeButton_Click">Изменить</Button>
             <Button Style="{StaticResource ResourceKey=StyleButton}" x:Name="SaveButton" Click="SaveButton_Click">Сохранить</Button>
         </StackPanel>
