@@ -15,7 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using Word = Microsoft.Office.Interop.Word;
 namespace CurcovaaGolovin.Pages
 {
     /// <summary>
@@ -136,6 +136,8 @@ namespace CurcovaaGolovin.Pages
                     }
                     else
                     {
+                        
+                        DataBase.entities.SaveChanges();
                         SurnameTextBox.Text = "";
                         NameTextBox.Text = "";
                         MidleNameTextBox.Text = "";
@@ -149,7 +151,6 @@ namespace CurcovaaGolovin.Pages
                         PeriodTextBox.Text = "";
                         FamilyTextBox.Text = "";
                         DateofDischargeDatapicer.Text = "";
-                        DataBase.entities.SaveChanges();
                         MessageBox.Show("Роженица успешно изменена", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
                         NavigationService.Navigate(new CardWoman());
                     }
@@ -163,6 +164,49 @@ namespace CurcovaaGolovin.Pages
             this.DataContext = Editewoman;
             WomanListView.ItemsSource = DataBase.entities.WomanInLabor.ToList();
             
+        }
+
+        private void Pechat_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (womanInLabor != null)
+                {
+                    var item = WomanListView.SelectedItem as WomanInLabor;
+                    Word._Application wApp = new Word.Application();
+                    Word._Document wDoc = wApp.Documents.Add();
+                    wApp.Visible = true;
+                    wDoc.Activate();
+                    var SubDann = wDoc.Content.Paragraphs.Add();
+                    SubDann.Range.Text =
+                    $"\t\t\t\t\t ОБМЕННАЯ КАРТА.\n" +
+                    $"\t (сведение родильного дома, родильного отделения больницы о родильнице)\n" +
+                    $"\t\t\t\t\t Дата выдачи «21.08.2004»\n" +
+                    $"\t 1.Фамилия,имя,отчество: {item.SurnameWomanInLabor} {item.NameWomanInLabor} {item.MiddleNameWomanInLabor} \n" +
+                    $"\t 2.Возраст: {item.WomanAge}  \n" +
+                    $"\t 3.Адрес: {item.Address} \n" +
+                    $"\t 4.Дата поступления:. Роды произошли: \n" +
+                    $"\t 5.Особенности течения родов:- \n" +
+                    $"\t 6.Оперативные пособия: Ручное пособие по методу Н.А.Цовьянова, а для выведения \t\t головки используют прием Морисо-Левре-Лашапелль \n" +
+                    $"\t 7.Обезболивание применялось: ДА \n" +
+                    $"\t 8.Течение последнего периода:- \n" +
+                    $"\t 9.Выписана на 10 день после родов \n" +
+                    $"\t 10.Состояние матери при выписки: никаких отклонений \n" +
+                    $"\n\n"
+                    + $"\t Подпись врача _______________\n";
+                    wDoc.SaveAs2($@"{Environment.CurrentDirectory}\1.doc");
+                    wDoc.SaveAs2($@"{Environment.CurrentDirectory}\1.pdf", Microsoft.Office.Interop.Word.WdSaveFormat.wdFormatPDF);
+                }
+                else
+                {
+                    MessageBox.Show("Выбирете запись", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка");
+            }
         }
     }
 }

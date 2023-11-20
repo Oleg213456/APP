@@ -26,7 +26,7 @@ namespace CurcovaaGolovin.Pages
         {
             InitializeComponent();
             this.DataContext = user;
-            UserTextBox.Text = user.UserNane;
+            
         }            
         
 

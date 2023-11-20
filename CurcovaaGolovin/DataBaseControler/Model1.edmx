@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище CurcovaaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Authorization">
           <Key>
             <PropertyRef Name="Auth_Id" />
@@ -13,7 +13,6 @@
           <Property Name="Role_ID" Type="int" Nullable="false" />
           <Property Name="Login" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="UserNane" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Childbirth">
           <Key>
@@ -235,7 +234,7 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="Хранилище CurcovaaModelContainer">
+        <EntityContainer Name="Хранилище ModelContainer">
           <EntitySet Name="Authorization" EntityType="Self.Authorization" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Childbirth" EntityType="Self.Childbirth" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
@@ -279,7 +278,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="CurcovaaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Authorization">
           <Key>
             <PropertyRef Name="Auth_Id" />
@@ -288,7 +287,6 @@
           <Property Name="Role_ID" Type="Int32" Nullable="false" />
           <Property Name="Login" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserNane" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Role" Relationship="Self.FK_Authorization_Role" FromRole="Authorization" ToRole="Role" />
         </EntityType>
         <EntityType Name="Childbirth">
@@ -493,7 +491,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities3" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities4" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Authorization" EntityType="Self.Authorization" />
           <EntitySet Name="Childbirth" EntityType="Self.Childbirth" />
           <EntitySet Name="Doctor" EntityType="Self.Doctor" />
@@ -548,11 +546,11 @@
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(CurcovaaModel.sp_helpdiagramdefinition_Result)">
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Model.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(CurcovaaModel.sp_helpdiagrams_Result)">
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Model.sp_helpdiagrams_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -579,20 +577,19 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище CurcovaaModelContainer" CdmEntityContainer="Entities3">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Entities4">
           <EntitySetMapping Name="Authorization">
-            <EntityTypeMapping TypeName="CurcovaaModel.Authorization">
+            <EntityTypeMapping TypeName="Model.Authorization">
               <MappingFragment StoreEntitySet="Authorization">
                 <ScalarProperty Name="Auth_Id" ColumnName="Auth_Id" />
                 <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserNane" ColumnName="UserNane" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Childbirth">
-            <EntityTypeMapping TypeName="CurcovaaModel.Childbirth">
+            <EntityTypeMapping TypeName="Model.Childbirth">
               <MappingFragment StoreEntitySet="Childbirth">
                 <ScalarProperty Name="IDInpatient" ColumnName="IDInpatient" />
                 <ScalarProperty Name="StartChildbirth" ColumnName="StartChildbirth" />
@@ -605,7 +602,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Doctor">
-            <EntityTypeMapping TypeName="CurcovaaModel.Doctor">
+            <EntityTypeMapping TypeName="Model.Doctor">
               <MappingFragment StoreEntitySet="Doctor">
                 <ScalarProperty Name="IDDoctor" ColumnName="IDDoctor" />
                 <ScalarProperty Name="NameDoctor" ColumnName="NameDoctor" />
@@ -618,7 +615,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Inpatient">
-            <EntityTypeMapping TypeName="CurcovaaModel.Inpatient">
+            <EntityTypeMapping TypeName="Model.Inpatient">
               <MappingFragment StoreEntitySet="Inpatient">
                 <ScalarProperty Name="IDInpatient" ColumnName="IDInpatient" />
                 <ScalarProperty Name="IDWomanInLabor" ColumnName="IDWomanInLabor" />
@@ -630,7 +627,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Kid">
-            <EntityTypeMapping TypeName="CurcovaaModel.Kid">
+            <EntityTypeMapping TypeName="Model.Kid">
               <MappingFragment StoreEntitySet="Kid">
                 <ScalarProperty Name="IDKid" ColumnName="IDKid" />
                 <ScalarProperty Name="NameKid" ColumnName="NameKid" />
@@ -647,7 +644,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Placement">
-            <EntityTypeMapping TypeName="CurcovaaModel.Placement">
+            <EntityTypeMapping TypeName="Model.Placement">
               <MappingFragment StoreEntitySet="Placement">
                 <ScalarProperty Name="IDPlacement" ColumnName="IDPlacement" />
                 <ScalarProperty Name="IDInpatient" ColumnName="IDInpatient" />
@@ -658,7 +655,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
-            <EntityTypeMapping TypeName="CurcovaaModel.Role">
+            <EntityTypeMapping TypeName="Model.Role">
               <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
                 <ScalarProperty Name="Role_Name" ColumnName="Role_Name" />
@@ -666,7 +663,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="CurcovaaModel.sysdiagrams">
+            <EntityTypeMapping TypeName="Model.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -677,7 +674,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Ward">
-            <EntityTypeMapping TypeName="CurcovaaModel.Ward">
+            <EntityTypeMapping TypeName="Model.Ward">
               <MappingFragment StoreEntitySet="Ward">
                 <ScalarProperty Name="NumberWard" ColumnName="NumberWard" />
                 <ScalarProperty Name="QuantityPlaces" ColumnName="QuantityPlaces" />
@@ -685,7 +682,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WomanInLabor">
-            <EntityTypeMapping TypeName="CurcovaaModel.WomanInLabor">
+            <EntityTypeMapping TypeName="Model.WomanInLabor">
               <MappingFragment StoreEntitySet="WomanInLabor">
                 <ScalarProperty Name="IDWomanInLabor" ColumnName="IDWomanInLabor" />
                 <ScalarProperty Name="NameWomanInLabor" ColumnName="NameWomanInLabor" />
@@ -705,20 +702,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище CurcovaaModel.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище CurcovaaModel.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище CurcovaaModel.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище CurcovaaModel.sp_helpdiagramdefinition">
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище Model.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище Model.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище Model.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище Model.sp_helpdiagramdefinition">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="CurcovaaModel.sp_helpdiagramdefinition_Result">
+              <ComplexTypeMapping TypeName="Model.sp_helpdiagramdefinition_Result">
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище CurcovaaModel.sp_helpdiagrams">
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище Model.sp_helpdiagrams">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="CurcovaaModel.sp_helpdiagrams_Result">
+              <ComplexTypeMapping TypeName="Model.sp_helpdiagrams_Result">
                 <ScalarProperty Name="Database" ColumnName="Database" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -727,8 +724,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище CurcovaaModel.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище CurcovaaModel.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище Model.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище Model.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

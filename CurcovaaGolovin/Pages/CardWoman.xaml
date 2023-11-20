@@ -5,9 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CurcovaaGolovin.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450"
       Loaded="Page_Loaded"
-      Title="Карточка роженицы">
+      Title="Карточка роженицы" Width="857.692">
 
     <Grid Margin="0,0,-69,0">
         <Grid.RowDefinitions>
@@ -58,7 +58,7 @@
                     </StackPanel>
                     <StackPanel>
                         <TextBox Text="{Binding SpecialMarks}" Style="{StaticResource MainTextBox}" Height="110" TextWrapping="Wrap" x:Name="DiscriptionTextBox" Width="114"></TextBox>
-                        <DatePicker Text="{Binding DateofDischarge}" Style="{StaticResource DatePicerTextBox}" Margin="3" x:Name="DateofDischargeDatapicer" Width="114"></DatePicker>
+                        <DatePicker SelectedDate="{Binding DateofDischarge}" Style="{StaticResource DatePicerTextBox}" Margin="3" x:Name="DateofDischargeDatapicer" Width="114"></DatePicker>
                         <TextBox Text="{Binding Post_birth_time}" x:Name="PeriodBirthTextBox" Style="{StaticResource MainTextBox}" Width="114" ></TextBox>
                     </StackPanel>
                 </StackPanel>
@@ -107,6 +107,7 @@
         <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Margin="0,100,0,3" >
             <Button Style="{StaticResource ResourceKey=StyleButton}" x:Name="EditeButton" Click="EditeButton_Click">Изменить</Button>
             <Button Style="{StaticResource ResourceKey=StyleButton}" x:Name="SaveButton" Click="SaveButton_Click">Сохранить</Button>
+            <Button x:Name="Pechat" Style="{StaticResource ResourceKey=StyleButton}" Click="Pechat_Click">Обменная карта</Button>
         </StackPanel>
     </Grid>
 </Page>

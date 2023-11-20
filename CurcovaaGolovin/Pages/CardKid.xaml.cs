@@ -109,7 +109,7 @@ namespace CurcovaaGolovin.Pages
                                 kid.Weight = Double.Parse(WeightTextBox.Text);
                                 kid.Locality = PalceComboBox.Text;
                                 kid.DateofDischarge = DateofDischargePicker.DisplayDate;
-                                kid.IDInpatient = 9;
+                                kid.IDInpatient = 6;
                                 DataBase.entities.Kid.Add(kid);
                                 DataBase.entities.SaveChanges();
                                 MessageBox.Show("Роды успешно добавлены", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
