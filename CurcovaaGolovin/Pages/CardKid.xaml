@@ -11,35 +11,37 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="7*"/>
-            <RowDefinition Height="23*"/>
-            <RowDefinition Height="45*"/>
+            <RowDefinition Height="42*"/>
+            <RowDefinition Height="149*"/>
+            <RowDefinition Height="259*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Width="425" Height="42">
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Width="425" Height="42" Grid.RowSpan="2">
             <TextBlock Style="{StaticResource MainTextBlock}" Height="20">Поиск карточки</TextBlock>
             <TextBox Style="{StaticResource MainTextBox}" SpellCheck.IsEnabled="True" x:Name="SearchTextBox" TextChanged="SearchTextBox_TextChanged" Margin="8"  Width="255"></TextBox>
         </StackPanel>
-        <StackPanel Orientation="Horizontal"  Grid.RowSpan="3" Grid.Row="1" >
+        <StackPanel Orientation="Horizontal"  Grid.RowSpan="2" Grid.Row="1" Margin="0,0.4,0,-2.4" >
             <StackPanel Grid.Row="1">
                 <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Фамилия</TextBlock>
                 <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Имя</TextBlock>
-                <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Дата рождения</TextBlock>
+                <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Отчество</TextBlock>
 
             </StackPanel>
             <StackPanel>
                 <TextBox Style="{StaticResource MainTextBox}" x:Name="KidSurnameBox" Text="{Binding SurnameKid}"></TextBox>
                 <TextBox Style="{StaticResource MainTextBox}" x:Name="KidNameBox" Text="{Binding NameKid}"></TextBox>
-                <DatePicker x:Name="BirthDatePicker" Text="{Binding DateOfBirth}" Style="{StaticResource DatePicerTextBox}" Margin="10" Width="150"></DatePicker>
+                <TextBox Style="{StaticResource MainTextBox}" x:Name="KidMidleNameBox" Text="{Binding MiddleNameKid}" ></TextBox>
+
             </StackPanel>
 
             <StackPanel Grid.Row="1" Orientation="Horizontal">
                 <StackPanel>
-                    <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Отчество</TextBlock>
+                    <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Дата рождения</TextBlock>
                     <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Рост</TextBlock>
                     <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Вес</TextBlock>
                 </StackPanel>
                 <StackPanel>
-                    <TextBox Style="{StaticResource MainTextBox}" x:Name="KidMidleNameBox" Text="{Binding MiddleNameKid}" ></TextBox>
+                    
+                    <DatePicker x:Name="BirthDatePicker" Text="{Binding DateOfBirth}" Style="{StaticResource DatePicerTextBox}" Margin="10" Width="150"></DatePicker>
                     <TextBox Style="{StaticResource MainTextBox}" x:Name="HeightTextBox" Text="{Binding Height}" ></TextBox>
                     <TextBox Style="{StaticResource MainTextBox}" x:Name="WeightTextBox" Text="{Binding Weight}" ></TextBox>
                 </StackPanel>
@@ -58,9 +60,9 @@
             </StackPanel>
         </StackPanel>
 
-        <StackPanel Grid.Row="2">
+        <StackPanel Grid.Row="2" Margin="0,6.6,0,-2.4">
             <TextBlock Margin="10,3,3,3">Список детей</TextBlock>
-            <ListView x:Name="KidListView" SelectionChanged="ListView_SelectionChanged" Height="182">
+            <ListView x:Name="KidListView" SelectionChanged="ListView_SelectionChanged" Height="180">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical" Width="400">
@@ -94,7 +96,7 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
-        <StackPanel Grid.Row="2" VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Height="56" Margin="0,0,0,13" >
+        <StackPanel Grid.Row="2" VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Height="56" Margin="260,0,260,10.6" Width="280" >
             <Button x:Name="EditeButton" Click="EditeButton_Click" Style="{StaticResource ResourceKey=StyleButton}">Изменить</Button>
             <Button x:Name="SaveButton" Click="SaveButton_Click" Style="{StaticResource ResourceKey=StyleButton}">Сохранить</Button>
         </StackPanel>

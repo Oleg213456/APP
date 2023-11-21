@@ -23,28 +23,28 @@
             <StackPanel Grid.Row="1">
                 <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Фамилия</TextBlock>
                 <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Имя</TextBlock>
-                <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Возраст</TextBlock>
+                <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Отчество</TextBlock>
                 <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Срок беременности</TextBlock>
                 <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Адрес</TextBlock>
             </StackPanel>
             <StackPanel>
                 <TextBox x:Name="SurnameTextBox" Text="{Binding SurnameWomanInLabor}" Style="{StaticResource MainTextBox}"></TextBox>
                 <TextBox x:Name="NameTextBox" Text="{Binding NameWomanInLabor}" Style="{StaticResource MainTextBox}"></TextBox>
-                <TextBox x:Name="AgeTextBox" Text="{Binding WomanAge}" Style="{StaticResource MainTextBox}"></TextBox>
+                <TextBox x:Name="AgeTextBox" Text="{Binding MiddleNameWomanInLabor}" Style="{StaticResource MainTextBox}"></TextBox>
                 <TextBox x:Name="PeriodTextBox" Text="{Binding Gestation_Period}" Style="{StaticResource MainTextBox}"></TextBox>
                 <TextBox x:Name="AdresTextBox" Text="{Binding Address}" Style="{StaticResource MainTextBox}"></TextBox>
             </StackPanel>
 
             <StackPanel Grid.Row="1" Orientation="Horizontal">
                 <StackPanel>
-                    <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Отчество</TextBlock>
+                    <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Возраст</TextBlock>
                     <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Дата рождения</TextBlock>
                     <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Номер телефона</TextBlock>
                     <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Семейное положение</TextBlock>
                     <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Беременность по счету</TextBlock>
                 </StackPanel>
                 <StackPanel>
-                    <TextBox Text="{Binding MiddleNameWomanInLabor}" Style="{StaticResource MainTextBox}" x:Name="MidleNameTextBox" ></TextBox>
+                    <TextBox Text="{Binding WomanAge}" Style="{StaticResource MainTextBox}" x:Name="MidleNameTextBox" ></TextBox>
                     <DatePicker Text="{Binding DateOfBirth}"  Style="{StaticResource DatePicerTextBox}" x:Name="BirthDataPicker" Margin="8" Width="152"></DatePicker>
                     <TextBox Text="{Binding PhoneWomanInLabor}" Style="{StaticResource MainTextBox}" x:Name="PhoneTextBox" ></TextBox>
                     <TextBox Text="{Binding Family_State}" Style="{StaticResource MainTextBox}" x:Name="FamilyTextBox" ></TextBox>
