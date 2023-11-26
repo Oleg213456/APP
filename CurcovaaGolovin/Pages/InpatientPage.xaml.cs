@@ -219,5 +219,68 @@ namespace CurcovaaGolovin.Pages
                 MessageBox.Show("Ошибка");
             }
         }
+
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (inpatient != null)
+                {
+                    var item =InpatientListView.SelectedItem as Inpatient;
+                    Word._Application wApp = new Word.Application();
+                    Word._Document wDoc = wApp.Documents.Add();
+                    wApp.Visible = true;
+                    wDoc.Activate();
+                    var SubDann = wDoc.Content.Paragraphs.Add();
+                    SubDann.Range.Text =
+                    $"\t\t КОРЕШОК МЕДИЦИНСКОГО СВИДЕТЕЛЬСТВА О РОЖДЕНИИ.\n" +
+                    $"\t\t\t\t Серия 00000000  № 0000000\n" +
+                    $"\t\t\t\t Дата выдачи «{item.WomanInLabor.DateofDischarge}»\n" +
+                    $"\t 1.Ребенок родился:{item.Childbirth.EndChildbirth.ToString("dd.mm.yyyy, HH:mm")}\n" +
+                    $"\t 2.Фамилия,имя,отчество матери: {item.WomanInLabor.SurnameWomanInLabor} {item.WomanInLabor.NameWomanInLabor} {item.WomanInLabor.MiddleNameWomanInLabor} \n" +
+                    $"\t 3.Дата рождения матери: {item.WomanInLabor.DateOfBirth} \n" +
+                    $"\t 4.Место постоянно жительства (регистрации) матери ребенка: \n" +
+                    $"\t {item.WomanInLabor.Address} \n" +
+                    $"\t 5.Местность: {item.WomanInLabor.Locality} \n" +
+                    $"\t 6.Пол:{item.Childbirth.Kid} \n" +
+                    $"\n\n"
+                    + $"\t Подпись врача _______________\n";
+                   
+                    var item2 = InpatientListView.SelectedItem as Inpatient;
+                    Word._Application wApp2 = new Word.Application();
+                    Word._Document wDoc2 = wApp.Documents.Add();
+                    wApp.Visible = true;
+                    wDoc.Activate();
+                    var SubDann2 = wDoc.Content.Paragraphs.Add();
+                    SubDann.Range.Text =
+                    $"\t\t\t МЕДИЦИНСКОГО СВИДЕТЕЛЬСТВА О РОЖДЕНИИ.\n" +
+                    $"\t\t\t\t Серия 00000000  № 0000000\n" +
+                    $"\t\t\t\t Дата выдачи «{item.WomanInLabor.DateofDischarge}»\n" +
+                    $"\t 1.Ребенок родился:{item.Childbirth.EndChildbirth.ToString("dd.mm.yyyy, HH:mm")}\n" +
+                    $"\t Мать \t\t\t\t\t\t\t\t\t  Ребенок \n" +
+                    $"\t ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ \n" +
+                    $"\t 2.Фамилия,имя,отчество:\t\t | \t7.Фамилия ребенка: \n" +
+                    $"\t {item2.WomanInLabor.SurnameWomanInLabor} {item2.WomanInLabor.NameWomanInLabor} {item2.WomanInLabor.MiddleNameWomanInLabor}\t\t | \tЯнак Людмила Валериевна \n" +
+                    $"\t 3.Дата рождения: {item2.WomanInLabor.DateOfBirth}\t | \t8.Место рождения: \n" +
+                    $"\t 4.Место постоянно жительства:\t | \t{item2.WomanInLabor.Address} \n" +
+                    $"\t {item2.WomanInLabor.Address}\t | \t9.Местность: {item2.WomanInLabor.Locality} \n" +
+                    $"\t 5.Местность: {item2.WomanInLabor.Locality}\t | \t10.Роды произошли: {item2.Childbirth.Birth_Place} \n" +
+                    $"\t 6.Семейное положение: {item2.WomanInLabor.Family_State}\t | \t11.Пол: мальчик \n" +
+                    $"\n\n"
+                    + $"\t Подпись врача _______________\n";
+                    wDoc.SaveAs2($@"{Environment.CurrentDirectory}\1.doc");
+                    wDoc.SaveAs2($@"{Environment.CurrentDirectory}\1.pdf", Microsoft.Office.Interop.Word.WdSaveFormat.wdFormatPDF);
+                }
+                else
+                {
+                    MessageBox.Show("Выбирете запись", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка");
+            }
+        }
     }
 }

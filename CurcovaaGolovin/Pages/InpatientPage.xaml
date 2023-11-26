@@ -131,6 +131,7 @@
                     <Button x:Name="ChildbrithButton" Click="ChildbrithButton_Click" Style="{StaticResource ResourceKey=StyleButton}" >Роды</Button>
                     <Button Style="{StaticResource ResourceKey=StyleButton}" Name="button" Click="button_Click" Width="186">Обменная карта роженицы</Button>
                     <Button Style="{StaticResource ResourceKey=StyleButton}" Name="button1" Click="button1_Click"  Width="186">Обменная карта ребенка</Button>
+                    <Button Style="{StaticResource ResourceKey=StyleButton}" Name="button2" Click="button2_Click"  Width="186">Свидетельство</Button>
                 </StackPanel>
                
             </StackPanel>
