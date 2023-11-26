@@ -1,4 +1,6 @@
-﻿using CurcovaaGolovin.DataBaseControler;
+﻿using ControlzEx.Standard;
+using CurcovaaGolovin.DataBaseControler;
+using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +33,8 @@ namespace CurcovaaGolovin.Pages
             childbirths = DataBase.entities.Childbirth.ToList();
             ChilBrirthListView.ItemsSource = childbirths;
             MotherComboBox.ItemsSource = DataBase.entities.WomanInLabor.ToList();
+            KidComboBox.ItemsSource = DataBase.entities.Kid.ToList();
+           
         }
         public ChildbirthPage(Childbirth childbirth)
         {
@@ -39,6 +43,8 @@ namespace CurcovaaGolovin.Pages
             childbirths = DataBase.entities.Childbirth.ToList();
             ChilBrirthListView.ItemsSource = childbirths;
             MotherComboBox.ItemsSource = DataBase.entities.WomanInLabor.ToList();
+            KidComboBox.ItemsSource = DataBase.entities.Kid.ToList();
+           
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -105,6 +111,8 @@ namespace CurcovaaGolovin.Pages
                                 birthChild.Birth_Type = Birth_TypeTextBox.Text;
                                 birthChild.Description = DescriptionTextBox.Text;
                                 birthChild.Operational_manuals = Operational_manualsTextBox.Text;
+                                var table = KidComboBox.SelectedItem as Kid;
+                                birthChild.IDKid = table.IDKid;
                                 DataBase.entities.Childbirth.Add(birthChild);
                                 DataBase.entities.SaveChanges();
                                 MessageBox.Show("Роды успешно добавлены", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -130,4 +138,5 @@ namespace CurcovaaGolovin.Pages
             catch (Exception ex) { MessageBox.Show(ex.Message, "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
     }
+  
 }

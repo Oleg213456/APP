@@ -13,12 +13,14 @@
           <Property Name="Role_ID" Type="int" Nullable="false" />
           <Property Name="Login" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserNane" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Childbirth">
           <Key>
             <PropertyRef Name="IDInpatient" />
           </Key>
           <Property Name="IDInpatient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDKid" Type="int" />
           <Property Name="StartChildbirth" Type="datetime" Nullable="false" />
           <Property Name="EndChildbirth" Type="datetime" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="200" />
@@ -61,7 +63,6 @@
           <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
           <Property Name="Height" Type="float" Nullable="false" />
           <Property Name="Weight" Type="float" Nullable="false" />
-          <Property Name="IDInpatient" Type="int" Nullable="false" />
           <Property Name="DateofDischarge" Type="date" />
           <Property Name="Locality" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
@@ -143,6 +144,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Childbirth_Kid">
+          <End Role="Kid" Type="Self.Kid" Multiplicity="0..1" />
+          <End Role="Childbirth" Type="Self.Childbirth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kid">
+              <PropertyRef Name="IDKid" />
+            </Principal>
+            <Dependent Role="Childbirth">
+              <PropertyRef Name="IDKid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Inpatient_Doctor">
           <End Role="Doctor" Type="Self.Doctor" Multiplicity="1" />
           <End Role="Inpatient" Type="Self.Inpatient" Multiplicity="*" />
@@ -164,18 +177,6 @@
             </Principal>
             <Dependent Role="Inpatient">
               <PropertyRef Name="IDWomanInLabor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Kid_Childbirth">
-          <End Role="Childbirth" Type="Self.Childbirth" Multiplicity="1" />
-          <End Role="Kid" Type="Self.Kid" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Childbirth">
-              <PropertyRef Name="IDInpatient" />
-            </Principal>
-            <Dependent Role="Kid">
-              <PropertyRef Name="IDInpatient" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -253,6 +254,10 @@
             <End Role="Inpatient" EntitySet="Inpatient" />
             <End Role="Childbirth" EntitySet="Childbirth" />
           </AssociationSet>
+          <AssociationSet Name="FK_Childbirth_Kid" Association="Self.FK_Childbirth_Kid">
+            <End Role="Kid" EntitySet="Kid" />
+            <End Role="Childbirth" EntitySet="Childbirth" />
+          </AssociationSet>
           <AssociationSet Name="FK_Inpatient_Doctor" Association="Self.FK_Inpatient_Doctor">
             <End Role="Doctor" EntitySet="Doctor" />
             <End Role="Inpatient" EntitySet="Inpatient" />
@@ -260,10 +265,6 @@
           <AssociationSet Name="FK_Inpatient_WomanInLabor" Association="Self.FK_Inpatient_WomanInLabor">
             <End Role="WomanInLabor" EntitySet="WomanInLabor" />
             <End Role="Inpatient" EntitySet="Inpatient" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Kid_Childbirth" Association="Self.FK_Kid_Childbirth">
-            <End Role="Childbirth" EntitySet="Childbirth" />
-            <End Role="Kid" EntitySet="Kid" />
           </AssociationSet>
           <AssociationSet Name="FK_Placement_Inpatient" Association="Self.FK_Placement_Inpatient">
             <End Role="Inpatient" EntitySet="Inpatient" />
@@ -287,6 +288,7 @@
           <Property Name="Role_ID" Type="Int32" Nullable="false" />
           <Property Name="Login" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserNane" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Role" Relationship="Self.FK_Authorization_Role" FromRole="Authorization" ToRole="Role" />
         </EntityType>
         <EntityType Name="Childbirth">
@@ -294,6 +296,7 @@
             <PropertyRef Name="IDInpatient" />
           </Key>
           <Property Name="IDInpatient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDKid" Type="Int32" />
           <Property Name="StartChildbirth" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EndChildbirth" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
@@ -301,7 +304,7 @@
           <Property Name="Birth_Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Operational_manuals" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Inpatient" Relationship="Self.FK_Childbirth_Inpatient" FromRole="Childbirth" ToRole="Inpatient" />
-          <NavigationProperty Name="Kid" Relationship="Self.FK_Kid_Childbirth" FromRole="Childbirth" ToRole="Kid" />
+          <NavigationProperty Name="Kid" Relationship="Self.FK_Childbirth_Kid" FromRole="Childbirth" ToRole="Kid" />
         </EntityType>
         <EntityType Name="Doctor">
           <Key>
@@ -343,10 +346,9 @@
           <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Height" Type="Double" Nullable="false" />
           <Property Name="Weight" Type="Double" Nullable="false" />
-          <Property Name="IDInpatient" Type="Int32" Nullable="false" />
           <Property Name="DateofDischarge" Type="DateTime" Precision="0" />
           <Property Name="Locality" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Childbirth" Relationship="Self.FK_Kid_Childbirth" FromRole="Kid" ToRole="Childbirth" />
+          <NavigationProperty Name="Childbirth" Relationship="Self.FK_Childbirth_Kid" FromRole="Kid" ToRole="Childbirth" />
         </EntityType>
         <EntityType Name="Placement">
           <Key>
@@ -431,15 +433,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Kid_Childbirth">
-          <End Role="Childbirth" Type="Self.Childbirth" Multiplicity="1" />
-          <End Role="Kid" Type="Self.Kid" Multiplicity="*" />
+        <Association Name="FK_Childbirth_Kid">
+          <End Role="Kid" Type="Self.Kid" Multiplicity="0..1" />
+          <End Role="Childbirth" Type="Self.Childbirth" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Childbirth">
-              <PropertyRef Name="IDInpatient" />
+            <Principal Role="Kid">
+              <PropertyRef Name="IDKid" />
             </Principal>
-            <Dependent Role="Kid">
-              <PropertyRef Name="IDInpatient" />
+            <Dependent Role="Childbirth">
+              <PropertyRef Name="IDKid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -491,7 +493,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities4" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities5" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Authorization" EntityType="Self.Authorization" />
           <EntitySet Name="Childbirth" EntityType="Self.Childbirth" />
           <EntitySet Name="Doctor" EntityType="Self.Doctor" />
@@ -510,9 +512,9 @@
             <End Role="Inpatient" EntitySet="Inpatient" />
             <End Role="Childbirth" EntitySet="Childbirth" />
           </AssociationSet>
-          <AssociationSet Name="FK_Kid_Childbirth" Association="Self.FK_Kid_Childbirth">
-            <End Role="Childbirth" EntitySet="Childbirth" />
+          <AssociationSet Name="FK_Childbirth_Kid" Association="Self.FK_Childbirth_Kid">
             <End Role="Kid" EntitySet="Kid" />
+            <End Role="Childbirth" EntitySet="Childbirth" />
           </AssociationSet>
           <AssociationSet Name="FK_Inpatient_Doctor" Association="Self.FK_Inpatient_Doctor">
             <End Role="Doctor" EntitySet="Doctor" />
@@ -577,7 +579,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Entities4">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Entities5">
           <EntitySetMapping Name="Authorization">
             <EntityTypeMapping TypeName="Model.Authorization">
               <MappingFragment StoreEntitySet="Authorization">
@@ -585,6 +587,7 @@
                 <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserNane" ColumnName="UserNane" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -592,6 +595,7 @@
             <EntityTypeMapping TypeName="Model.Childbirth">
               <MappingFragment StoreEntitySet="Childbirth">
                 <ScalarProperty Name="IDInpatient" ColumnName="IDInpatient" />
+                <ScalarProperty Name="IDKid" ColumnName="IDKid" />
                 <ScalarProperty Name="StartChildbirth" ColumnName="StartChildbirth" />
                 <ScalarProperty Name="EndChildbirth" ColumnName="EndChildbirth" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -637,7 +641,6 @@
                 <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
                 <ScalarProperty Name="Height" ColumnName="Height" />
                 <ScalarProperty Name="Weight" ColumnName="Weight" />
-                <ScalarProperty Name="IDInpatient" ColumnName="IDInpatient" />
                 <ScalarProperty Name="DateofDischarge" ColumnName="DateofDischarge" />
                 <ScalarProperty Name="Locality" ColumnName="Locality" />
               </MappingFragment>

@@ -14,6 +14,12 @@ namespace CurcovaaGolovin.DataBaseControler
     
     public partial class Kid
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Kid()
+        {
+            this.Childbirth = new HashSet<Childbirth>();
+        }
+    
         public int IDKid { get; set; }
         public string NameKid { get; set; }
         public string SurnameKid { get; set; }
@@ -22,10 +28,10 @@ namespace CurcovaaGolovin.DataBaseControler
         public System.DateTime DateOfBirth { get; set; }
         public double Height { get; set; }
         public double Weight { get; set; }
-        public int IDInpatient { get; set; }
         public Nullable<System.DateTime> DateofDischarge { get; set; }
         public string Locality { get; set; }
     
-        public virtual Childbirth Childbirth { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Childbirth> Childbirth { get; set; }
     }
 }

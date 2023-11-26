@@ -52,9 +52,9 @@
                         <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Местность</TextBlock>
                     </StackPanel>
                     <StackPanel>
-                        <ComboBox Style="{StaticResource ComboBoxTextBox}" x:Name="GenderComboBox" SelectedItem="{Binding Gender}" DisplayMemberPath="Gender" SelectedIndex="0" IsEditable="False" Margin="10"></ComboBox>
+                        <TextBox Style="{StaticResource MainTextBox}" x:Name="GenderTextBox" Text="{Binding Gender}" Margin="10"></TextBox>
                         <DatePicker x:Name="DateofDischargePicker" Text="{Binding DateofDischarge}" Style="{StaticResource DatePicerTextBox}" Margin="10" Width="150"></DatePicker>
-                        <ComboBox Style="{StaticResource ComboBoxTextBox}" x:Name="PalceComboBox" SelectedItem="{Binding Locality}" DisplayMemberPath="Locality" SelectedIndex="0" IsEditable="False" Margin="10"></ComboBox>
+                        <TextBox Style="{StaticResource MainTextBox}" x:Name="LocalityTextBox" Text="{Binding Locality}" Margin="10"></TextBox>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>

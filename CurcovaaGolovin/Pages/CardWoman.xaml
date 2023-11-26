@@ -45,7 +45,7 @@
                 </StackPanel>
                 <StackPanel>
                     <TextBox Text="{Binding WomanAge}" Style="{StaticResource MainTextBox}" x:Name="MidleNameTextBox" ></TextBox>
-                    <DatePicker Text="{Binding DateOfBirth}"  Style="{StaticResource DatePicerTextBox}" x:Name="BirthDataPicker" Margin="8" Width="152"></DatePicker>
+                    <DatePicker SelectedDate="{Binding DateOfBirth, StringFormat=MM-dd-yyyy}"  Style="{StaticResource DatePicerTextBox}" x:Name="BirthDataPicker" Margin="8" Width="152"></DatePicker>
                     <TextBox Text="{Binding PhoneWomanInLabor}" Style="{StaticResource MainTextBox}" x:Name="PhoneTextBox" ></TextBox>
                     <TextBox Text="{Binding Family_State}" Style="{StaticResource MainTextBox}" x:Name="FamilyTextBox" ></TextBox>
                     <TextBox Text="{Binding Gestation_Count}" Style="{StaticResource MainTextBox}" x:Name="CountBirthTextBox" ></TextBox>

@@ -15,10 +15,10 @@ namespace CurcovaaGolovin.DataBaseControler
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class Entities4 : DbContext
+    public partial class Entities5 : DbContext
     {
-        public Entities4()
-            : base("name=Entities4")
+        public Entities5()
+            : base("name=Entities5")
         {
         }
     

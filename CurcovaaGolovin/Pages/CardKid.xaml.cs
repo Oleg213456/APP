@@ -28,9 +28,7 @@ namespace CurcovaaGolovin.Pages
             InitializeComponent();
             newkid = new Kid();
             kids = DataBase.entities.Kid.ToList();
-            KidListView.ItemsSource = kids;
-            GenderComboBox.ItemsSource = DataBase.entities.Kid.ToList();
-            PalceComboBox.ItemsSource = DataBase.entities.Kid.ToList();
+            KidListView.ItemsSource = kids; 
         }
         public CardKid(Kid Curentkid)
         {
@@ -38,8 +36,6 @@ namespace CurcovaaGolovin.Pages
             newkid = Curentkid;
             kids = DataBase.entities.Kid.ToList();
             KidListView.ItemsSource = kids;
-            GenderComboBox.ItemsSource = DataBase.entities.Kid.ToList();
-            PalceComboBox.ItemsSource = DataBase.entities.Kid.ToList();
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -89,10 +85,10 @@ namespace CurcovaaGolovin.Pages
         {
             try
             {
-                if (MessageBox.Show("Вы уверены что хотите применить данное сохранения родов", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No) { }
+                if (MessageBox.Show("Вы уверены что хотите применить данное сохранения ребенка", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No) { }
                 else
                 {
-                    if (newkid.IDInpatient == 0)
+                    if (newkid.IDKid == 0)
                     {
                         try
                         {
@@ -103,16 +99,15 @@ namespace CurcovaaGolovin.Pages
                                 kid.SurnameKid = KidSurnameBox.Text;
                                 kid.NameKid = KidNameBox.Text;
                                 kid.MiddleNameKid = KidMidleNameBox.Text;
-                                kid.Gender = GenderComboBox.Text;
+                                kid.Gender = GenderTextBox.Text;
                                 kid.DateOfBirth = BirthDatePicker.DisplayDate;
                                 kid.Height = Double.Parse(HeightTextBox.Text);
                                 kid.Weight = Double.Parse(WeightTextBox.Text);
-                                kid.Locality = PalceComboBox.Text;
+                                kid.Locality = LocalityTextBox.Text;
                                 kid.DateofDischarge = DateofDischargePicker.DisplayDate;
-                                kid.IDInpatient = 6;
                                 DataBase.entities.Kid.Add(kid);
                                 DataBase.entities.SaveChanges();
-                                MessageBox.Show("Роды успешно добавлены", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+                                MessageBox.Show("Ребенок успешно добавлен", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
                                 NavigationService.Navigate(new ChildbirthPage());
                             }
                         }
@@ -121,7 +116,7 @@ namespace CurcovaaGolovin.Pages
                     else
                     {
                         DataBase.entities.SaveChanges();
-                        MessageBox.Show("Роды успешно изменены", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Ребенок успешно изменен", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
                         NavigationService.Navigate(new ChildbirthPage());
                     }
                 }

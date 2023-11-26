@@ -18,6 +18,7 @@ namespace CurcovaaGolovin.DataBaseControler
         public int Role_ID { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
+        public string UserNane { get; set; }
     
         public virtual Role Role { get; set; }
     }
