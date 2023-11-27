@@ -25,7 +25,6 @@
                 <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Роженица</TextBlock>
                 <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10,0,0,0">Врач</TextBlock>
                 <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10,15,0,0">Начало</TextBlock>
-
             </StackPanel>
             <StackPanel>
                 <ComboBox SelectedItem="{Binding WomanInLabor}" SelectedIndex="0" IsEditable="False" x:Name="Woman_tx" Style="{StaticResource ComboBoxTextBox}" Width="175">
@@ -85,7 +84,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="2">
-            <TextBlock Margin="10,3,3,3">Расположение</TextBlock>
+            <TextBlock Margin="10,3,0,3">Расположение</TextBlock>
             <StackPanel Orientation="Horizontal">
                 <ListView x:Name="InpatientListView" SelectionChanged="InpatientListView_SelectionChanged" Height="182" Width="602"  >
                     <ListView.ItemTemplate>

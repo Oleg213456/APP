@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище CurcovaaOBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Authorization">
           <Key>
             <PropertyRef Name="Auth_Id" />
@@ -20,13 +20,15 @@
             <PropertyRef Name="IDInpatient" />
           </Key>
           <Property Name="IDInpatient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IDKid" Type="int" />
+          <Property Name="IDKid" Type="int" Nullable="false" />
           <Property Name="StartChildbirth" Type="datetime" Nullable="false" />
           <Property Name="EndChildbirth" Type="datetime" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="200" />
           <Property Name="Birth_Place" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="Birth_Type" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Operational_manuals" Type="nvarchar" MaxLength="500" />
+          <Property Name="StartChildbirthTime" Type="nvarchar" MaxLength="5" />
+          <Property Name="EndChildbirthTime" Type="nvarchar" MaxLength="5" />
         </EntityType>
         <EntityType Name="Doctor">
           <Key>
@@ -145,7 +147,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Childbirth_Kid">
-          <End Role="Kid" Type="Self.Kid" Multiplicity="0..1" />
+          <End Role="Kid" Type="Self.Kid" Multiplicity="1" />
           <End Role="Childbirth" Type="Self.Childbirth" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Kid">
@@ -235,7 +237,7 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="Хранилище ModelContainer">
+        <EntityContainer Name="Хранилище CurcovaaOBModelContainer">
           <EntitySet Name="Authorization" EntityType="Self.Authorization" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Childbirth" EntityType="Self.Childbirth" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
@@ -279,7 +281,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="CurcovaaOBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Authorization">
           <Key>
             <PropertyRef Name="Auth_Id" />
@@ -296,13 +298,15 @@
             <PropertyRef Name="IDInpatient" />
           </Key>
           <Property Name="IDInpatient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IDKid" Type="Int32" />
+          <Property Name="IDKid" Type="Int32" Nullable="false" />
           <Property Name="StartChildbirth" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EndChildbirth" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Birth_Place" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Birth_Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Operational_manuals" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="StartChildbirthTime" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="EndChildbirthTime" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Inpatient" Relationship="Self.FK_Childbirth_Inpatient" FromRole="Childbirth" ToRole="Inpatient" />
           <NavigationProperty Name="Kid" Relationship="Self.FK_Childbirth_Kid" FromRole="Childbirth" ToRole="Kid" />
         </EntityType>
@@ -434,7 +438,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Childbirth_Kid">
-          <End Role="Kid" Type="Self.Kid" Multiplicity="0..1" />
+          <End Role="Kid" Type="Self.Kid" Multiplicity="1" />
           <End Role="Childbirth" Type="Self.Childbirth" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Kid">
@@ -493,7 +497,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities5" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CurcovaaOBEntities5" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Authorization" EntityType="Self.Authorization" />
           <EntitySet Name="Childbirth" EntityType="Self.Childbirth" />
           <EntitySet Name="Doctor" EntityType="Self.Doctor" />
@@ -548,11 +552,11 @@
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Model.sp_helpdiagramdefinition_Result)">
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(CurcovaaOBModel.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Model.sp_helpdiagrams_Result)">
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(CurcovaaOBModel.sp_helpdiagrams_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -579,9 +583,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Entities5">
+        <EntityContainerMapping StorageEntityContainer="Хранилище CurcovaaOBModelContainer" CdmEntityContainer="CurcovaaOBEntities5">
           <EntitySetMapping Name="Authorization">
-            <EntityTypeMapping TypeName="Model.Authorization">
+            <EntityTypeMapping TypeName="CurcovaaOBModel.Authorization">
               <MappingFragment StoreEntitySet="Authorization">
                 <ScalarProperty Name="Auth_Id" ColumnName="Auth_Id" />
                 <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
@@ -592,7 +596,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Childbirth">
-            <EntityTypeMapping TypeName="Model.Childbirth">
+            <EntityTypeMapping TypeName="CurcovaaOBModel.Childbirth">
               <MappingFragment StoreEntitySet="Childbirth">
                 <ScalarProperty Name="IDInpatient" ColumnName="IDInpatient" />
                 <ScalarProperty Name="IDKid" ColumnName="IDKid" />
@@ -602,11 +606,13 @@
                 <ScalarProperty Name="Birth_Place" ColumnName="Birth_Place" />
                 <ScalarProperty Name="Birth_Type" ColumnName="Birth_Type" />
                 <ScalarProperty Name="Operational_manuals" ColumnName="Operational_manuals" />
+                <ScalarProperty Name="StartChildbirthTime" ColumnName="StartChildbirthTime" />
+                <ScalarProperty Name="EndChildbirthTime" ColumnName="EndChildbirthTime" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Doctor">
-            <EntityTypeMapping TypeName="Model.Doctor">
+            <EntityTypeMapping TypeName="CurcovaaOBModel.Doctor">
               <MappingFragment StoreEntitySet="Doctor">
                 <ScalarProperty Name="IDDoctor" ColumnName="IDDoctor" />
                 <ScalarProperty Name="NameDoctor" ColumnName="NameDoctor" />
@@ -619,7 +625,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Inpatient">
-            <EntityTypeMapping TypeName="Model.Inpatient">
+            <EntityTypeMapping TypeName="CurcovaaOBModel.Inpatient">
               <MappingFragment StoreEntitySet="Inpatient">
                 <ScalarProperty Name="IDInpatient" ColumnName="IDInpatient" />
                 <ScalarProperty Name="IDWomanInLabor" ColumnName="IDWomanInLabor" />
@@ -631,7 +637,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Kid">
-            <EntityTypeMapping TypeName="Model.Kid">
+            <EntityTypeMapping TypeName="CurcovaaOBModel.Kid">
               <MappingFragment StoreEntitySet="Kid">
                 <ScalarProperty Name="IDKid" ColumnName="IDKid" />
                 <ScalarProperty Name="NameKid" ColumnName="NameKid" />
@@ -647,7 +653,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Placement">
-            <EntityTypeMapping TypeName="Model.Placement">
+            <EntityTypeMapping TypeName="CurcovaaOBModel.Placement">
               <MappingFragment StoreEntitySet="Placement">
                 <ScalarProperty Name="IDPlacement" ColumnName="IDPlacement" />
                 <ScalarProperty Name="IDInpatient" ColumnName="IDInpatient" />
@@ -658,7 +664,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
-            <EntityTypeMapping TypeName="Model.Role">
+            <EntityTypeMapping TypeName="CurcovaaOBModel.Role">
               <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
                 <ScalarProperty Name="Role_Name" ColumnName="Role_Name" />
@@ -666,7 +672,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="Model.sysdiagrams">
+            <EntityTypeMapping TypeName="CurcovaaOBModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -677,7 +683,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Ward">
-            <EntityTypeMapping TypeName="Model.Ward">
+            <EntityTypeMapping TypeName="CurcovaaOBModel.Ward">
               <MappingFragment StoreEntitySet="Ward">
                 <ScalarProperty Name="NumberWard" ColumnName="NumberWard" />
                 <ScalarProperty Name="QuantityPlaces" ColumnName="QuantityPlaces" />
@@ -685,7 +691,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WomanInLabor">
-            <EntityTypeMapping TypeName="Model.WomanInLabor">
+            <EntityTypeMapping TypeName="CurcovaaOBModel.WomanInLabor">
               <MappingFragment StoreEntitySet="WomanInLabor">
                 <ScalarProperty Name="IDWomanInLabor" ColumnName="IDWomanInLabor" />
                 <ScalarProperty Name="NameWomanInLabor" ColumnName="NameWomanInLabor" />
@@ -705,20 +711,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище Model.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище Model.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище Model.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище Model.sp_helpdiagramdefinition">
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище CurcovaaOBModel.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище CurcovaaOBModel.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище CurcovaaOBModel.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище CurcovaaOBModel.sp_helpdiagramdefinition">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.sp_helpdiagramdefinition_Result">
+              <ComplexTypeMapping TypeName="CurcovaaOBModel.sp_helpdiagramdefinition_Result">
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище Model.sp_helpdiagrams">
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище CurcovaaOBModel.sp_helpdiagrams">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.sp_helpdiagrams_Result">
+              <ComplexTypeMapping TypeName="CurcovaaOBModel.sp_helpdiagrams_Result">
                 <ScalarProperty Name="Database" ColumnName="Database" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -727,8 +733,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище Model.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище Model.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище CurcovaaOBModel.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище CurcovaaOBModel.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

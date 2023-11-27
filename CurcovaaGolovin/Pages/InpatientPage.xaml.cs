@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Word = Microsoft.Office.Interop.Word;
+//using Word = Microsoft.Office.Interop.Word;
 namespace CurcovaaGolovin.Pages
 {
     /// <summary>
@@ -32,6 +33,8 @@ namespace CurcovaaGolovin.Pages
             InpatientListView.ItemsSource = inpatients;
             Woman_tx.ItemsSource = DataBase.entities.WomanInLabor.ToList();
             Doctor.ItemsSource = DataBase.entities.Doctor.ToList();
+            dataE.SelectedDate = DateTime.Now;
+            DateN.SelectedDate = DateTime.Now;
         }
         public InpatientPage(Inpatient inpatient)
         {
@@ -39,6 +42,8 @@ namespace CurcovaaGolovin.Pages
             inpatientos = inpatient;
             Woman_tx.ItemsSource = DataBase.entities.WomanInLabor.ToList();
             Doctor.ItemsSource = DataBase.entities.Doctor.ToList();
+            dataE.SelectedDate = DateTime.Now;
+            DateN.SelectedDate = DateTime.Now;
         }
 
         private void ChildbrithButton_Click(object sender, RoutedEventArgs e)
@@ -60,18 +65,23 @@ namespace CurcovaaGolovin.Pages
                             if (Woman_tx.Text == null || Doctor.Text == null || dataE.Text == "" || DateN.Text == "") throw new Exception("Обязательные поля не заполнены");
                             else
                             {
-                                Inpatient inpat = new Inpatient();
-                                var table = Woman_tx.SelectedItem as WomanInLabor;
-                                inpat.IDWomanInLabor = table.IDWomanInLabor;
-                                var table2 = Doctor.SelectedItem as Doctor;
-                                inpat.IDDoctor = table2.IDDoctor;
-                                inpat.StartInpatient = DateN.DisplayDate;
-                                inpat.EndInpatient = dataE.DisplayDate;
-                                inpat.Description = Opisanie.Text;
-                                DataBase.entities.Inpatient.Add(inpat);
-                                DataBase.entities.SaveChanges();
-                                MessageBox.Show("Стационар успешно заполнен", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
-                                NavigationService.Navigate(new InpatientPage());
+                               if(DateN.DisplayDate > DateTime.Now || dataE.DisplayDate > DateTime.Now) throw new Exception("Выбранная дата не может быть больше нынешней");
+                               else
+                                 {
+                                     Inpatient inpat = new Inpatient();
+                                     var table = Woman_tx.SelectedItem as WomanInLabor;
+                                     inpat.IDWomanInLabor = table.IDWomanInLabor;
+                                     var table2 = Doctor.SelectedItem as Doctor;
+                                     inpat.IDDoctor = table2.IDDoctor;
+                                     inpat.StartInpatient = DateN.DisplayDate;
+                                     inpat.EndInpatient = dataE.DisplayDate;
+                                     inpat.Description = Opisanie.Text;
+                                     DataBase.entities.Inpatient.Add(inpat);
+                                     DataBase.entities.SaveChanges();
+                                     MessageBox.Show("Стационар успешно заполнен", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+                                     NavigationService.Navigate(new InpatientPage());
+                               }
+                                
                             }
                         }
                         catch (Exception ex) { MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
@@ -139,30 +149,30 @@ namespace CurcovaaGolovin.Pages
             {
                 if (inpatient != null)
                 {
-                    var item = InpatientListView.SelectedItem as Inpatient;
-                    Word._Application wApp = new Word.Application();
-                    Word._Document wDoc = wApp.Documents.Add();
-                    wApp.Visible = true;
-                    wDoc.Activate();
-                    var SubDann = wDoc.Content.Paragraphs.Add();
-                    SubDann.Range.Text =
-                    $"\t\t\t\t\t ОБМЕННАЯ КАРТА.\n" +
-                    $"\t (сведение родильного дома, родильного отделения больницы о родильнице)\n" +
-                    $"\t\t\t\t\tДата выдачи «{item.WomanInLabor.DateofDischarge}»\n" +
-                    $"\t 1.Фамилия,имя,отчество: {item.WomanInLabor.SurnameWomanInLabor} {item.WomanInLabor.NameWomanInLabor} {item.WomanInLabor.MiddleNameWomanInLabor} \n" +
-                    $"\t 2.Возраст: {item.WomanInLabor.WomanAge}  \n" +
-                    $"\t 3.Адрес: {item.WomanInLabor.Address} \n" +
-                    $"\t 4.Дата поступления: {item.StartInpatient}. Роды произошли: {item.Childbirth.Birth_Place} \n" +
-                    $"\t 5.Особенности течения родов: {item.Childbirth.Description} \n" +
-                    $"\t 6.Оперативные пособия: {item.Childbirth.Operational_manuals}\n" +
-                    $"\t 7.Обезболивание применялось: ДА \n" +
-                    $"\t 8.Течение последнего периода:{item.WomanInLabor.Post_birth_time} \n" +
-                    $"\t 9.Выписана: {item.EndInpatient} \n" +
-                    $"\t 10.Состояние матери при выписки: {item.WomanInLabor.SpecialMarks} \n" +
-                    $"\n\n"
-                    + $"\t Подпись врача _______________\n";
-                    wDoc.SaveAs2($@"{Environment.CurrentDirectory}\1.doc");
-                    wDoc.SaveAs2($@"{Environment.CurrentDirectory}\1.pdf", Microsoft.Office.Interop.Word.WdSaveFormat.wdFormatPDF);
+                    //var item = InpatientListView.SelectedItem as Inpatient;
+                    //Word._Application wApp = new Word.Application();
+                    //Word._Document wDoc = wApp.Documents.Add();
+                    //wApp.Visible = true;
+                    //wDoc.Activate();
+                    //var SubDann = wDoc.Content.Paragraphs.Add();
+                    //SubDann.Range.Text =
+                    //$"\t\t\t\t\t ОБМЕННАЯ КАРТА.\n" +
+                    //$"\t (сведение родильного дома, родильного отделения больницы о родильнице)\n" +
+                    //$"\t\t\t\t\tДата выдачи «{item.WomanInLabor.DateofDischarge}»\n" +
+                    //$"\t 1.Фамилия,имя,отчество: {item.WomanInLabor.SurnameWomanInLabor} {item.WomanInLabor.NameWomanInLabor} {item.WomanInLabor.MiddleNameWomanInLabor} \n" +
+                    //$"\t 2.Возраст: {item.WomanInLabor.WomanAge}  \n" +
+                    //$"\t 3.Адрес: {item.WomanInLabor.Address} \n" +
+                    //$"\t 4.Дата поступления: {item.StartInpatient}. Роды произошли: {item.Childbirth.Birth_Place} \n" +
+                    //$"\t 5.Особенности течения родов: {item.Childbirth.Description} \n" +
+                    //$"\t 6.Оперативные пособия: {item.Childbirth.Operational_manuals}\n" +
+                    //$"\t 7.Обезболивание применялось: ДА \n" +
+                    //$"\t 8.Течение последнего периода:{item.WomanInLabor.Post_birth_time} \n" +
+                    //$"\t 9.Выписана: {item.EndInpatient} \n" +
+                    //$"\t 10.Состояние матери при выписки: {item.WomanInLabor.SpecialMarks} \n" +
+                    //$"\n\n"
+                    //+ $"\t Подпись врача _______________\n";
+                    //wDoc.SaveAs2($@"{Environment.CurrentDirectory}\1.doc");
+                    //wDoc.SaveAs2($@"{Environment.CurrentDirectory}\1.pdf", Microsoft.Office.Interop.Word.WdSaveFormat.wdFormatPDF);
                 }
                 else
                 {
@@ -183,30 +193,30 @@ namespace CurcovaaGolovin.Pages
             {
                 if (inpatient != null)
                 {
-                    var item = InpatientListView.SelectedItem as Inpatient;
-                    Word._Application wApp = new Word.Application();
-                    Word._Document wDoc = wApp.Documents.Add();
-                    wApp.Visible = true;
-                    wDoc.Activate();
-                    var SubDann = wDoc.Content.Paragraphs.Add();
-                    SubDann.Range.Text =
-                    $"\t\t\t\t\t ОБМЕННАЯ КАРТА.\n" +
-                    $"\t (сведение родильного дома, родильного отделения больницы о новорожденном)\n" +
-                    $"\t\t\t\t\t Дата выдачи «{item.WomanInLabor.DateofDischarge}»\n" +
-                    $"\t 1.Фамилия,имя,отчество родительницы:{item.WomanInLabor.SurnameWomanInLabor} {item.WomanInLabor.NameWomanInLabor} {item.WomanInLabor.MiddleNameWomanInLabor} \n" +
-                    $"\t 2.Адрес: {item.WomanInLabor.Address} \n" +
-                    $"\t 3.Роды произошли: {item.Childbirth.Birth_Place} \n" +
-                    $"\t 4.От какой беременности по счете родился ребенок {item.WomanInLabor.Gestation_Count} со сроком беременности \t\t\t {item.WomanInLabor.Gestation_Period} недель. Предшествуюущие беременности закончились:{item.WomanInLabor.SpecialMarks} \n" +
-                    $"\t 5.Вид родов: {item.Childbirth.Birth_Type} \n" +
-                    $"\t 6.Особенности течения родов:{item.Childbirth.Description} \n" +
-                    $"\t 7.Обезболивание применялось: ДА \n" +
-                    $"\t 8.Течение последнего периода:{item.WomanInLabor.Post_birth_time} \n" +
-                    $"\t 9.Мать выписана:{item.EndInpatient.ToString("MM-dd-yyyy")} \n" +
-                    $"\t 10.Состояние матери при выписки: {item.WomanInLabor.SpecialMarks} \n" +
-                    $"\n\n"
-                    + $"\t Подпись врача _______________\n";
-                    wDoc.SaveAs2($@"{Environment.CurrentDirectory}\1.doc");
-                    wDoc.SaveAs2($@"{Environment.CurrentDirectory}\1.pdf", Microsoft.Office.Interop.Word.WdSaveFormat.wdFormatPDF);
+                    //var item = InpatientListView.SelectedItem as Inpatient;
+                    //Word._Application wApp = new Word.Application();
+                    //Word._Document wDoc = wApp.Documents.Add();
+                    //wApp.Visible = true;
+                    //wDoc.Activate();
+                    //var SubDann = wDoc.Content.Paragraphs.Add();
+                    //SubDann.Range.Text =
+                    //$"\t\t\t\t\t ОБМЕННАЯ КАРТА.\n" +
+                    //$"\t (сведение родильного дома, родильного отделения больницы о новорожденном)\n" +
+                    //$"\t\t\t\t\t Дата выдачи «{item.WomanInLabor.DateofDischarge}»\n" +
+                    //$"\t 1.Фамилия,имя,отчество родительницы:{item.WomanInLabor.SurnameWomanInLabor} {item.WomanInLabor.NameWomanInLabor} {item.WomanInLabor.MiddleNameWomanInLabor} \n" +
+                    //$"\t 2.Адрес: {item.WomanInLabor.Address} \n" +
+                    //$"\t 3.Роды произошли: {item.Childbirth.Birth_Place} \n" +
+                    //$"\t 4.От какой беременности по счете родился ребенок {item.WomanInLabor.Gestation_Count} со сроком беременности \t\t\t {item.WomanInLabor.Gestation_Period} недель. Предшествуюущие беременности закончились:{item.WomanInLabor.SpecialMarks} \n" +
+                    //$"\t 5.Вид родов: {item.Childbirth.Birth_Type} \n" +
+                    //$"\t 6.Особенности течения родов:{item.Childbirth.Description} \n" +
+                    //$"\t 7.Обезболивание применялось: ДА \n" +
+                    //$"\t 8.Течение последнего периода:{item.WomanInLabor.Post_birth_time} \n" +
+                    //$"\t 9.Мать выписана:{item.EndInpatient.ToString("MM-dd-yyyy")} \n" +
+                    //$"\t 10.Состояние матери при выписки: {item.WomanInLabor.SpecialMarks} \n" +
+                    //$"\n\n"
+                    //+ $"\t Подпись врача _______________\n";
+                    //wDoc.SaveAs2($@"{Environment.CurrentDirectory}\1.doc");
+                    //wDoc.SaveAs2($@"{Environment.CurrentDirectory}\1.pdf", Microsoft.Office.Interop.Word.WdSaveFormat.wdFormatPDF);
                 }
                 else
                 {
@@ -226,50 +236,50 @@ namespace CurcovaaGolovin.Pages
             {
                 if (inpatient != null)
                 {
-                    var item =InpatientListView.SelectedItem as Inpatient;
-                    Word._Application wApp = new Word.Application();
-                    Word._Document wDoc = wApp.Documents.Add();
-                    wApp.Visible = true;
-                    wDoc.Activate();
-                    var SubDann = wDoc.Content.Paragraphs.Add();
-                    SubDann.Range.Text =
-                    $"\t\t КОРЕШОК МЕДИЦИНСКОГО СВИДЕТЕЛЬСТВА О РОЖДЕНИИ.\n" +
-                    $"\t\t\t\t Серия 00000000  № 0000000\n" +
-                    $"\t\t\t\t Дата выдачи «{item.WomanInLabor.DateofDischarge}»\n" +
-                    $"\t 1.Ребенок родился:{item.Childbirth.EndChildbirth.ToString("dd.mm.yyyy, HH:mm")}\n" +
-                    $"\t 2.Фамилия,имя,отчество матери: {item.WomanInLabor.SurnameWomanInLabor} {item.WomanInLabor.NameWomanInLabor} {item.WomanInLabor.MiddleNameWomanInLabor} \n" +
-                    $"\t 3.Дата рождения матери: {item.WomanInLabor.DateOfBirth} \n" +
-                    $"\t 4.Место постоянно жительства (регистрации) матери ребенка: \n" +
-                    $"\t {item.WomanInLabor.Address} \n" +
-                    $"\t 5.Местность: {item.WomanInLabor.Locality} \n" +
-                    $"\t 6.Пол:{item.Childbirth.Kid} \n" +
-                    $"\n\n"
-                    + $"\t Подпись врача _______________\n";
+                    //var item =InpatientListView.SelectedItem as Inpatient;
+                    //Word._Application wApp = new Word.Application();
+                    //Word._Document wDoc = wApp.Documents.Add();
+                    //wApp.Visible = true;
+                    //wDoc.Activate();
+                    //var SubDann = wDoc.Content.Paragraphs.Add();
+                    //SubDann.Range.Text =
+                    //$"\t\t КОРЕШОК МЕДИЦИНСКОГО СВИДЕТЕЛЬСТВА О РОЖДЕНИИ.\n" +
+                    //$"\t\t\t\t Серия 00000000  № 0000000\n" +
+                    //$"\t\t\t\t Дата выдачи «{item.WomanInLabor.DateofDischarge}»\n" +
+                    //$"\t 1.Ребенок родился:{item.Childbirth.EndChildbirth.ToString("dd.mm.yyyy, HH:mm")}\n" +
+                    //$"\t 2.Фамилия,имя,отчество матери: {item.WomanInLabor.SurnameWomanInLabor} {item.WomanInLabor.NameWomanInLabor} {item.WomanInLabor.MiddleNameWomanInLabor} \n" +
+                    //$"\t 3.Дата рождения матери: {item.WomanInLabor.DateOfBirth} \n" +
+                    //$"\t 4.Место постоянно жительства (регистрации) матери ребенка: \n" +
+                    //$"\t {item.WomanInLabor.Address} \n" +
+                    //$"\t 5.Местность: {item.WomanInLabor.Locality} \n" +
+                    //$"\t 6.Пол:{item.Childbirth.Kid} \n" +
+                    //$"\n\n"
+                    //+ $"\t Подпись врача _______________\n";
                    
-                    var item2 = InpatientListView.SelectedItem as Inpatient;
-                    Word._Application wApp2 = new Word.Application();
-                    Word._Document wDoc2 = wApp.Documents.Add();
-                    wApp.Visible = true;
-                    wDoc.Activate();
-                    var SubDann2 = wDoc.Content.Paragraphs.Add();
-                    SubDann.Range.Text =
-                    $"\t\t\t МЕДИЦИНСКОГО СВИДЕТЕЛЬСТВА О РОЖДЕНИИ.\n" +
-                    $"\t\t\t\t Серия 00000000  № 0000000\n" +
-                    $"\t\t\t\t Дата выдачи «{item.WomanInLabor.DateofDischarge}»\n" +
-                    $"\t 1.Ребенок родился:{item.Childbirth.EndChildbirth.ToString("dd.mm.yyyy, HH:mm")}\n" +
-                    $"\t Мать \t\t\t\t\t\t\t\t\t  Ребенок \n" +
-                    $"\t ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ \n" +
-                    $"\t 2.Фамилия,имя,отчество:\t\t | \t7.Фамилия ребенка: \n" +
-                    $"\t {item2.WomanInLabor.SurnameWomanInLabor} {item2.WomanInLabor.NameWomanInLabor} {item2.WomanInLabor.MiddleNameWomanInLabor}\t\t | \tЯнак Людмила Валериевна \n" +
-                    $"\t 3.Дата рождения: {item2.WomanInLabor.DateOfBirth}\t | \t8.Место рождения: \n" +
-                    $"\t 4.Место постоянно жительства:\t | \t{item2.WomanInLabor.Address} \n" +
-                    $"\t {item2.WomanInLabor.Address}\t | \t9.Местность: {item2.WomanInLabor.Locality} \n" +
-                    $"\t 5.Местность: {item2.WomanInLabor.Locality}\t | \t10.Роды произошли: {item2.Childbirth.Birth_Place} \n" +
-                    $"\t 6.Семейное положение: {item2.WomanInLabor.Family_State}\t | \t11.Пол: мальчик \n" +
-                    $"\n\n"
-                    + $"\t Подпись врача _______________\n";
-                    wDoc.SaveAs2($@"{Environment.CurrentDirectory}\1.doc");
-                    wDoc.SaveAs2($@"{Environment.CurrentDirectory}\1.pdf", Microsoft.Office.Interop.Word.WdSaveFormat.wdFormatPDF);
+                    //var item2 = InpatientListView.SelectedItem as Inpatient;
+                    //Word._Application wApp2 = new Word.Application();
+                    //Word._Document wDoc2 = wApp.Documents.Add();
+                    //wApp.Visible = true;
+                    //wDoc.Activate();
+                    //var SubDann2 = wDoc.Content.Paragraphs.Add();
+                    //SubDann.Range.Text =
+                    //$"\t\t\t МЕДИЦИНСКОГО СВИДЕТЕЛЬСТВА О РОЖДЕНИИ.\n" +
+                    //$"\t\t\t\t Серия 00000000  № 0000000\n" +
+                    //$"\t\t\t\t Дата выдачи «{item.WomanInLabor.DateofDischarge}»\n" +
+                    //$"\t 1.Ребенок родился:{item.Childbirth.EndChildbirth.ToString("dd.mm.yyyy, HH:mm")}\n" +
+                    //$"\t Мать \t\t\t\t\t\t\t\t\t  Ребенок \n" +
+                    //$"\t ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ \n" +
+                    //$"\t 2.Фамилия,имя,отчество:\t\t | \t7.Фамилия ребенка: \n" +
+                    //$"\t {item2.WomanInLabor.SurnameWomanInLabor} {item2.WomanInLabor.NameWomanInLabor} {item2.WomanInLabor.MiddleNameWomanInLabor}\t\t | \tЯнак Людмила Валериевна \n" +
+                    //$"\t 3.Дата рождения: {item2.WomanInLabor.DateOfBirth}\t | \t8.Место рождения: \n" +
+                    //$"\t 4.Место постоянно жительства:\t | \t{item2.WomanInLabor.Address} \n" +
+                    //$"\t {item2.WomanInLabor.Address}\t | \t9.Местность: {item2.WomanInLabor.Locality} \n" +
+                    //$"\t 5.Местность: {item2.WomanInLabor.Locality}\t | \t10.Роды произошли: {item2.Childbirth.Birth_Place} \n" +
+                    //$"\t 6.Семейное положение: {item2.WomanInLabor.Family_State}\t | \t11.Пол: мальчик \n" +
+                    //$"\n\n"
+                    //+ $"\t Подпись врача _______________\n";
+                    //wDoc.SaveAs2($@"{Environment.CurrentDirectory}\1.doc");
+                    //wDoc.SaveAs2($@"{Environment.CurrentDirectory}\1.pdf", Microsoft.Office.Interop.Word.WdSaveFormat.wdFormatPDF);
                 }
                 else
                 {

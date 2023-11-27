@@ -8,6 +8,6 @@ namespace CurcovaaGolovin.DataBaseControler
 {
     public class DataBase
     {
-        public static Entities5 entities = new Entities5();
+        public static CurcovaaOBEntities5 entities = new CurcovaaOBEntities5();
     }
 }

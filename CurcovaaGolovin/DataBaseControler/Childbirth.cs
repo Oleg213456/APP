@@ -15,13 +15,15 @@ namespace CurcovaaGolovin.DataBaseControler
     public partial class Childbirth
     {
         public int IDInpatient { get; set; }
-        public Nullable<int> IDKid { get; set; }
+        public int IDKid { get; set; }
         public System.DateTime StartChildbirth { get; set; }
         public System.DateTime EndChildbirth { get; set; }
         public string Description { get; set; }
         public string Birth_Place { get; set; }
         public string Birth_Type { get; set; }
         public string Operational_manuals { get; set; }
+        public string StartChildbirthTime { get; set; }
+        public string EndChildbirthTime { get; set; }
     
         public virtual Inpatient Inpatient { get; set; }
         public virtual Kid Kid { get; set; }
