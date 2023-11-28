@@ -42,7 +42,6 @@ namespace CurcovaaGolovin.Pages
                         if (user != null)
                         {
                             save_Data();
-                          
                             NavigationService.Navigate(new MenuItem(user));
                         }
                         else {throw new Exception("Ошибка авторизации");}
