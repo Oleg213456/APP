@@ -42,6 +42,7 @@ namespace CurcovaaGolovin.Pages
                         if (user != null)
                         {
                             save_Data();
+                            MessageBox.Show("Вы успешно авторизовались", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
                             NavigationService.Navigate(new MenuItem(user));
                         }
                         else {throw new Exception("Ошибка авторизации");}
