@@ -34,7 +34,7 @@ namespace CurcovaaGolovin.Pages
             birth = new Childbirth();
             childbirths = DataBase.entities.Childbirth.ToList();
             ChilBrirthListView.ItemsSource = childbirths;
-            MotherComboBox.ItemsSource = DataBase.entities.WomanInLabor.ToList();
+            MotherComboBox.ItemsSource = DataBase.entities.Inpatient.ToList();
             KidComboBox.ItemsSource = DataBase.entities.Kid.ToList();
            
         }
@@ -44,7 +44,7 @@ namespace CurcovaaGolovin.Pages
             birth = childbirth;
             childbirths = DataBase.entities.Childbirth.ToList();
             ChilBrirthListView.ItemsSource = childbirths;
-            MotherComboBox.ItemsSource = DataBase.entities.WomanInLabor.ToList();
+            MotherComboBox.ItemsSource = DataBase.entities.Inpatient.ToList();
             KidComboBox.ItemsSource = DataBase.entities.Kid.ToList();
            
         }

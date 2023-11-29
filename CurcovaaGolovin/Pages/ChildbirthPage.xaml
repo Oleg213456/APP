@@ -24,23 +24,23 @@
             <StackPanel Grid.Row="1">
                 <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Начало</TextBlock>
                 <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Конец</TextBlock>
-                <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Роженица</TextBlock>
+                <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Номер</TextBlock>
 
             </StackPanel>
 
             <StackPanel>
                 <DatePicker x:Name="StatDate" SelectedDate="{Binding StartChildbirth}"  Style="{StaticResource DatePicerTextBox}" Margin="10" Width="175"></DatePicker>
                 <DatePicker x:Name="EndDate" SelectedDate="{Binding EndChildbirth}" Style="{StaticResource DatePicerTextBox}" Margin="10"  Width="175"></DatePicker>
-                <ComboBox Style="{StaticResource ComboBoxTextBox}" Margin="5" x:Name="MotherComboBox" SelectedItem="{Binding Inpatient.WomanInLabor}" SelectedIndex="0" IsEditable="False" Width="175" >
+                <ComboBox Style="{StaticResource ComboBoxTextBox}" Margin="5" x:Name="MotherComboBox" SelectedItem="{Binding Inpatient.WomanInLabor}" DisplayMemberPath="" SelectedIndex="0" IsEditable="False" Width="175" >
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock>
                                     <TextBlock.Text>
                                         <MultiBinding StringFormat="{} {0} {1} {2}">
-                                            <Binding Path="NameWomanInLabor"></Binding>
-                                            <Binding Path="SurnameWomanInLabor"></Binding>
-                                            <Binding Path="MiddleNameWomanInLabor"></Binding>
+                                            <Binding Path="WomanInLabor.NameWomanInLabor"></Binding>
+                                            <Binding Path="WomanInLabor.SurnameWomanInLabor"></Binding>
+                                            <Binding Path="WomanInLabor.MiddleNameWomanInLabor"></Binding>
                                         </MultiBinding>
                                     </TextBlock.Text>
                                 </TextBlock>
