@@ -17,6 +17,7 @@ namespace CurcovaaGolovin.DataBaseControler
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Inpatient()
         {
+            this.Childbirth = new HashSet<Childbirth>();
             this.Placement = new HashSet<Placement>();
         }
     
@@ -27,7 +28,8 @@ namespace CurcovaaGolovin.DataBaseControler
         public string Description { get; set; }
         public int IDDoctor { get; set; }
     
-        public virtual Childbirth Childbirth { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Childbirth> Childbirth { get; set; }
         public virtual Doctor Doctor { get; set; }
         public virtual WomanInLabor WomanInLabor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -12,21 +12,12 @@ namespace CurcovaaGolovin.DataBaseControler
     using System;
     using System.Collections.Generic;
     
-    public partial class Childbirth
+    public partial class sysdiagrams
     {
-        public int IDChilbirth { get; set; }
-        public Nullable<int> IDInpatient { get; set; }
-        public int IDKid { get; set; }
-        public System.DateTime StartChildbirth { get; set; }
-        public System.DateTime EndChildbirth { get; set; }
-        public string Description { get; set; }
-        public string Birth_Place { get; set; }
-        public string Birth_Type { get; set; }
-        public string Operational_manuals { get; set; }
-        public string StartChildbirthTime { get; set; }
-        public string EndChildbirthTime { get; set; }
-    
-        public virtual Inpatient Inpatient { get; set; }
-        public virtual Kid Kid { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

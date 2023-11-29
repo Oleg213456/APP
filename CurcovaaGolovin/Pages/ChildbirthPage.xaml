@@ -97,37 +97,45 @@
         </StackPanel>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <TextBlock Margin="10,10,3,3">Список рожениц</TextBlock>
-            <ListView Margin="-95,20,0,30" Width="775" Height="182" x:Name="ChilBrirthListView" SelectionChanged="ChilBrirthListView_SelectionChanged">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Начало родов: "></TextBlock>
-                                <TextBlock Text="{Binding StringFormat='{}dd.mm.yyyy, HH:mm', Path=StartChildbirth}"></TextBlock>
+            <TextBlock Margin="10,3,0,3">Список рожениц</TextBlock>
+            <StackPanel>
+                <ListView Margin="-95,20,0,30" Width="511" Height="182" x:Name="ChilBrirthListView" SelectionChanged="ChilBrirthListView_SelectionChanged">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Начало родов: "></TextBlock>
+                                    <TextBlock Text="{Binding StringFormat='{}dd.mm.yyyy, HH:mm', Path=StartChildbirth}"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Конец родов: "></TextBlock>
+                                    <TextBlock Text="{Binding StringFormat='{}dd.mm.yyyy, HH:mm', Path=EndChildbirth}"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="ФИО Роженицы:"></TextBlock>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{} {0} {1} {2}">
+                                                <Binding Path="Inpatient.WomanInLabor.NameWomanInLabor"></Binding>
+                                                <Binding Path="Inpatient.WomanInLabor.SurnameWomanInLabor"></Binding>
+                                                <Binding Path="Inpatient.WomanInLabor.MiddleNameWomanInLabor"></Binding>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </StackPanel>
+                                <TextBlock Text="{Binding StringFormat=Вид родов: {0} ,Path=Birth_Type}"></TextBlock>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Конец родов: "></TextBlock>
-                                <TextBlock Text="{Binding StringFormat='{}dd.mm.yyyy, HH:mm', Path=EndChildbirth}"></TextBlock>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="ФИО Роженицы:"></TextBlock>
-                                <TextBlock>
-                                    <TextBlock.Text>
-                                        <MultiBinding StringFormat="{} {0} {1} {2}">
-                                            <Binding Path="Inpatient.WomanInLabor.NameWomanInLabor"></Binding>
-                                            <Binding Path="Inpatient.WomanInLabor.SurnameWomanInLabor"></Binding>
-                                            <Binding Path="Inpatient.WomanInLabor.MiddleNameWomanInLabor"></Binding>
-                                        </MultiBinding>
-                                    </TextBlock.Text>
-                                </TextBlock>
-                            </StackPanel>
-                            <TextBlock Text="{Binding StringFormat=Вид родов: {0} ,Path=Birth_Type}"></TextBlock>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+            <StackPanel>
+                <Button Style="{StaticResource ResourceKey=StyleButton}" Name="button" Click="button_Click" Width="186" Margin="20">Обменная карта роженицы</Button>
+                <Button Style="{StaticResource ResourceKey=StyleButton}" Name="button1" Click="button1_Click" Margin="20" Width="186">Обменная карта ребенка</Button>
+                <Button Style="{StaticResource ResourceKey=StyleButton}" Name="button2" Click="button2_Click" Margin="20" Width="186">Свидетельство</Button>
+            </StackPanel>
         </StackPanel>
+           
         <StackPanel Grid.Row="2" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Center" Height="56" Margin="0,198,0,0" Width="280" >
             <Button Style="{StaticResource ResourceKey=StyleButton}" x:Name="EditButton" Click="EditButton_Click">Изменить</Button>
             <Button Style="{StaticResource ResourceKey=StyleButton}" x:Name="SaveButton" Click="SaveButton_Click">Сохранить</Button>
