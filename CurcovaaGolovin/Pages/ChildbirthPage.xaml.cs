@@ -142,7 +142,7 @@ namespace CurcovaaGolovin.Pages
                                                         var table = KidComboBox.SelectedItem as Kid;
                                                         birthChild.IDKid = table.IDKid;
                                                         var table1 = MotherComboBox.SelectedItem as Inpatient;
-                                                        birthChild.IDInpatient = table1.IDWomanInLabor;
+                                                        birthChild.IDInpatient = table1.IDInpatient;
                                                         DataBase.entities.Childbirth.Add(birthChild);
                                                         DataBase.entities.SaveChanges();
                                                         MessageBox.Show("Роды успешно добавлены", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
