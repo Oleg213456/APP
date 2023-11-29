@@ -10,6 +10,10 @@
       Title="ChildbirthPage">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="42*"/>
@@ -29,7 +33,7 @@
             </StackPanel>
 
             <StackPanel>
-                <DatePicker x:Name="StatDate" SelectedDate="{Binding StartChildbirth}"  Style="{StaticResource DatePicerTextBox}" Margin="10" Width="175"></DatePicker>
+                <DatePicker x:Name="StatDate" SelectedDate="{Binding StartChildbirth}" Style="{StaticResource DatePicerTextBox}" Margin="10" Width="175"></DatePicker>
                 <DatePicker x:Name="EndDate" SelectedDate="{Binding EndChildbirth}" Style="{StaticResource DatePicerTextBox}" Margin="10"  Width="175"></DatePicker>
                 <ComboBox Style="{StaticResource ComboBoxTextBox}" Margin="5" x:Name="MotherComboBox" SelectedItem="{Binding Inpatient.WomanInLabor}" DisplayMemberPath="" SelectedIndex="0" IsEditable="False" Width="175" >
                     <ComboBox.ItemTemplate>
@@ -50,8 +54,8 @@
                 </ComboBox>
             </StackPanel>
             <StackPanel>
-                <TextBox x:Name="TimeN" Style="{StaticResource MainTextBox}" Margin="10,10,0,0" MaxLength="5" Width="60"></TextBox>
-                <TextBox x:Name="TimeE" Style="{StaticResource MainTextBox}" Margin="10,24,0,0" MaxLength="5" Width="60"></TextBox>
+                <TextBox Text="{Binding StartChildbirthTime}" x:Name="TimeN" Style="{StaticResource MainTextBox}" Margin="10,10,0,0" MaxLength="5" Width="60"></TextBox>
+                <TextBox Text="{Binding EndChildbirthTime}" x:Name="TimeE" Style="{StaticResource MainTextBox}" Margin="10,24,0,0" MaxLength="5" Width="60"></TextBox>
             </StackPanel>
             <StackPanel Grid.Row="1" Orientation="Horizontal">
 
@@ -95,7 +99,6 @@
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <TextBlock Margin="10,3,0,3">Список рожениц</TextBlock>
             <StackPanel>
@@ -105,11 +108,13 @@
                             <StackPanel Orientation="Vertical">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Начало родов: "></TextBlock>
-                                    <TextBlock Text="{Binding StringFormat='{}dd.mm.yyyy, HH:mm', Path=StartChildbirth}"></TextBlock>
+                                    <TextBlock Text="{Binding StringFormat='{}dd.mm.yyyy', Path=StartChildbirth}"></TextBlock>
+                                    <TextBlock Margin="5,0,0,0" Text="{Binding StartChildbirthTime}"></TextBlock>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Конец родов: "></TextBlock>
-                                    <TextBlock Text="{Binding StringFormat='{}dd.mm.yyyy, HH:mm', Path=EndChildbirth}"></TextBlock>
+                                    <TextBlock Text="{Binding StringFormat='{}dd.mm.yyyy', Path=EndChildbirth}"></TextBlock>
+                                    <TextBlock Margin="5,0,0,0" Text="{Binding EndChildbirthTime}"></TextBlock>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="ФИО Роженицы:"></TextBlock>
@@ -135,7 +140,7 @@
                 <Button Style="{StaticResource ResourceKey=StyleButton}" Name="button2" Click="button2_Click" Margin="20" Width="186">Свидетельство</Button>
             </StackPanel>
         </StackPanel>
-           
+
         <StackPanel Grid.Row="2" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Center" Height="56" Margin="0,198,0,0" Width="280" >
             <Button Style="{StaticResource ResourceKey=StyleButton}" x:Name="EditButton" Click="EditButton_Click">Изменить</Button>
             <Button Style="{StaticResource ResourceKey=StyleButton}" x:Name="SaveButton" Click="SaveButton_Click">Сохранить</Button>

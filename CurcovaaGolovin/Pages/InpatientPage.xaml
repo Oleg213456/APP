@@ -61,13 +61,13 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <DatePicker x:Name="DateN" Style="{StaticResource DatePicerTextBox}" SelectedDate="{Binding StartInpatient, StringFormat=MM-dd-yyyy}" Margin="0,15,0,0" Width="175"></DatePicker>
+                <DatePicker x:Name="DateN" Style="{StaticResource DatePicerTextBox}" SelectedDate="{Binding StartInpatient , StringFormat=MM-dd-yyyy}" Margin="0,15,0,0" Width="175" />
             </StackPanel>
             <StackPanel Grid.Row="1" Orientation="Horizontal">
                 <StackPanel>
                     <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10"></TextBlock>
                     <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10"></TextBlock>
-                    <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="5,0,5,10">Конец</TextBlock>
+                    <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="5,-5,5,10">Конец</TextBlock>
                 </StackPanel>
                 <StackPanel>
                     <DatePicker Name="dataE" Style="{StaticResource DatePicerTextBox}" SelectedDate="{Binding EndInpatient, StringFormat=MM-dd-yyyy}" Margin="5,76,30,0" Width="175"></DatePicker>

@@ -160,15 +160,54 @@ namespace CurcovaaGolovin.Pages
                     }
                     else
                     {
-                        DataBase.entities.SaveChanges();
-                        StatDate.Text = "";
-                        EndDate.Text = "";
-                        Birth_PlaceTextBox.Text = "";
-                        Birth_TypeTextBox.Text = "";
-                        DescriptionTextBox.Text = "";
-                        Operational_manualsTextBox.Text = "";
-                        MessageBox.Show("Роды успешно изменены", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
-                        NavigationService.Navigate(new ChildbirthPage());
+                        try
+                        {
+                            if (Birth_PlaceTextBox.Text == "" || StatDate.Text == "" || EndDate.Text == "" || Birth_TypeTextBox.Text == "" || TimeN.Text == "" || TimeE.Text == "") throw new Exception("Обязательные поля не заполнены");
+                            else
+                            {
+                                if (!Regex.IsMatch(TimeN.Text, @"^((?:[1-9]\d*)|(?:(?=[\d.]+)(?:[1-9]\d*|0)\:\d+))$") || !Regex.IsMatch(TimeE.Text, @"^((?:[1-9]\d*)|(?:(?=[\d.]+)(?:[1-9]\d*|0)\:\d+))$")) throw new Exception("Неверный формат записи в поле Время начала родов или Время окончания родов");
+                                else
+                                {
+                                    string t1 = string.Concat(TimeN.Text[0], TimeN.Text[1]);
+                                    string t2 = string.Concat(TimeE.Text[0], TimeE.Text[1]);
+                                    string t11 = TimeN.Text[2].ToString();
+                                    string t22 = TimeN.Text[2].ToString();
+                                    string t111 = string.Concat(TimeN.Text[3], TimeN.Text[4]);
+                                    string t222 = string.Concat(TimeE.Text[3], TimeE.Text[4]);
+                                    if (int.Parse(t1) > 24 || int.Parse(t1) < 0 || int.Parse(t2) > 24 || int.Parse(t1) < 0) throw new Exception("В сутках не может быть больше 24 часов или меньше 0 часов");
+                                    else
+                                    {
+                                        if (t11 != ":" || t22 != ":") throw new Exception("Не соответствие формату,пожалуйста используйте : как 3 симвл в поле Время начала родов или Время окончания родов");
+                                        else
+                                        {
+                                            if (int.Parse(t111) > 60 || int.Parse(t111) < 0 || int.Parse(t222) > 60 || int.Parse(t222) < 0) throw new Exception("В часе не может быть больше 60 минут или меньше 0 минут");
+                                            else
+                                            {
+                                                if (StatDate.DisplayDate > DateTime.Now || EndDate.DisplayDate > DateTime.Now) throw new Exception("Выбранная дата не может быть больше нынешней");
+                                                else
+                                                {
+                                                    if (!Regex.IsMatch(Birth_PlaceTextBox.Text, @"^((?:[а-я А-Я]\w*)|(?:(?=[\w.]+)(?:[а-я А-Я]\w*|0)\ \w*))$") || !Regex.IsMatch(Birth_TypeTextBox.Text, @"^((?:[а-я А-Я]\w*)|(?:(?=[\w.]+)(?:[а-я А-Я]\w*|0)\ \w*))$")) throw new Exception("В полях тип родов и место родов не может быть иных символов кроме русских букв");
+                                                    else
+                                                    {
+                                                        DataBase.entities.SaveChanges();
+                                                        StatDate.Text = "";
+                                                        EndDate.Text = "";
+                                                        Birth_PlaceTextBox.Text = "";
+                                                        Birth_TypeTextBox.Text = "";
+                                                        DescriptionTextBox.Text = "";
+                                                        Operational_manualsTextBox.Text = "";
+                                                        MessageBox.Show("Роды успешно изменены", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+                                                        NavigationService.Navigate(new ChildbirthPage());
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                        catch (Exception ex) { MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
                     }
                 }
             }
