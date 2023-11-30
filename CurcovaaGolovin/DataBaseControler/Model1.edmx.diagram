@@ -4,23 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8448958d7be64a409ed9f5d3fa7b0516" Name="Diagram1">
-        <EntityTypeShape EntityType="CursovaaObModel.Authorization" Width="1.5" PointX="5" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CursovaaObModel.Childbirth" Width="1.5" PointX="5.625" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CursovaaObModel.Doctor" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CursovaaObModel.Inpatient" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CursovaaObModel.Kid" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CursovaaObModel.Placement" Width="1.5" PointX="8.25" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CursovaaObModel.Role" Width="1.5" PointX="2.75" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CursovaaObModel.Ward" Width="1.5" PointX="6" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CursovaaObModel.WomanInLabor" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
-        <AssociationConnector Association="CursovaaObModel.FK_Authorization_Role" ManuallyRouted="false" />
-        <AssociationConnector Association="CursovaaObModel.FK_Childbirth_Inpatient1" ManuallyRouted="false" />
-        <AssociationConnector Association="CursovaaObModel.FK_Childbirth_Kid" ManuallyRouted="false" />
-        <AssociationConnector Association="CursovaaObModel.FK_Inpatient_Doctor" ManuallyRouted="false" />
-        <AssociationConnector Association="CursovaaObModel.FK_Inpatient_WomanInLabor" ManuallyRouted="false" />
-        <AssociationConnector Association="CursovaaObModel.FK_Placement_Inpatient" ManuallyRouted="false" />
-        <AssociationConnector Association="CursovaaObModel.FK_Placement_Ward" ManuallyRouted="false" />
+      <Diagram DiagramId="0192ff4166264f929b2d952a96e5787e" Name="Diagram1">
+        <EntityTypeShape EntityType="CurcovaaOBModel.Authorization" Width="1.5" PointX="5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CurcovaaOBModel.Childbirth" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CurcovaaOBModel.Doctor" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CurcovaaOBModel.Inpatient" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CurcovaaOBModel.Kid" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CurcovaaOBModel.Placement" Width="1.5" PointX="8.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CurcovaaOBModel.Role" Width="1.5" PointX="2.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CurcovaaOBModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CurcovaaOBModel.Ward" Width="1.5" PointX="6" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CurcovaaOBModel.WomanInLabor" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <AssociationConnector Association="CurcovaaOBModel.FK_Authorization_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="CurcovaaOBModel.FK_Childbirth_Inpatient1" ManuallyRouted="false" />
+        <AssociationConnector Association="CurcovaaOBModel.FK_Childbirth_Kid" ManuallyRouted="false" />
+        <AssociationConnector Association="CurcovaaOBModel.FK_Inpatient_Doctor" ManuallyRouted="false" />
+        <AssociationConnector Association="CurcovaaOBModel.FK_Inpatient_WomanInLabor" ManuallyRouted="false" />
+        <AssociationConnector Association="CurcovaaOBModel.FK_Placement_Inpatient" ManuallyRouted="false" />
+        <AssociationConnector Association="CurcovaaOBModel.FK_Placement_Ward" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

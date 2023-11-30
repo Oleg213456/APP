@@ -229,7 +229,7 @@ namespace CurcovaaGolovin.Pages
                     SubDann.Range.Text =
                     $"\t\t\t\t\t ОБМЕННАЯ КАРТА.\n" +
                     $"\t (сведение родильного дома, родильного отделения больницы о родильнице)\n" +
-                    $"\t\t\t\t\tДата выдачи «{item.Inpatient.WomanInLabor.DateofDischarge}»\n" +
+                    $"\t\t\t\t\tДата выдачи «{item.Inpatient.EndInpatient.ToString("MM - dd - yyyy")}»\n" +
                     $"\t 1.Фамилия,имя,отчество: {item.Inpatient.WomanInLabor.SurnameWomanInLabor} {item.Inpatient.WomanInLabor.NameWomanInLabor} {item.Inpatient.WomanInLabor.MiddleNameWomanInLabor} \n" +
                     $"\t 2.Возраст: {item.Inpatient.WomanInLabor.WomanAge}  \n" +
                     $"\t 3.Адрес: {item.Inpatient.WomanInLabor.Address} \n" +
@@ -271,7 +271,7 @@ namespace CurcovaaGolovin.Pages
                     SubDann.Range.Text =
                     $"\t\t\t\t\t ОБМЕННАЯ КАРТА.\n" +
                     $"\t (сведение родильного дома, родильного отделения больницы о новорожденном)\n" +
-                    $"\t\t\t\t\t Дата выдачи «{item.Inpatient.WomanInLabor.DateofDischarge}»\n" +
+                    $"\t\t\t\t\t Дата выдачи «{item.Inpatient.EndInpatient.ToString("MM-dd-yyyy")}»\n" +
                     $"\t 1.Фамилия,имя,отчество родительницы:{item.Inpatient.WomanInLabor.SurnameWomanInLabor} {item.Inpatient.WomanInLabor.NameWomanInLabor} {item.Inpatient.WomanInLabor.MiddleNameWomanInLabor} \n" +
                     $"\t 2.Адрес: {item.Inpatient.WomanInLabor.Address} \n" +
                     $"\t 3.Роды произошли: {item.Birth_Place} \n" +
@@ -310,10 +310,9 @@ namespace CurcovaaGolovin.Pages
                 wDoc.Activate();
                 var SubDann = wDoc.Content.Paragraphs.Add();
                 SubDann.Range.Text =
-                $"\t\t КОРЕШОК МЕДИЦИНСКОГО СВИДЕТЕЛЬСТВА О РОЖДЕНИИ.\n" +
-                $"\t\t\t\t Серия 00000000  № 0000000\n" +
-                $"\t\t\t\t Дата выдачи «{item.Inpatient.WomanInLabor.DateofDischarge}»\n" +
-                $"\t 1.Ребенок родился:{item.EndChildbirth.ToString("dd.mm.yyyy, HH:mm")}\n" +
+                $"\t\t КОРЕШОК МЕДИЦИНСКОГО СВИДЕТЕЛЬСТВА О РОЖДЕНИИ.\n" +  
+                $"\t\t\t\t Дата выдачи «{item.Inpatient.EndInpatient.ToString("MM-dd-yyyy")}»\n" +
+                $"\t 1.Ребенок родился:{item.EndChildbirth.ToString("dd.mm.yyyy")} {item.EndChildbirthTime} \n"  +
                 $"\t 2.Фамилия,имя,отчество матери: {item.Inpatient.WomanInLabor.SurnameWomanInLabor} {item.Inpatient.WomanInLabor.NameWomanInLabor} {item.Inpatient.WomanInLabor.MiddleNameWomanInLabor} \n" +
                 $"\t 3.Дата рождения матери: {item.Inpatient.WomanInLabor.DateOfBirth} \n" +
                 $"\t 4.Место постоянно жительства (регистрации) матери ребенка: \n" +
@@ -321,10 +320,9 @@ namespace CurcovaaGolovin.Pages
                 $"\t 5.Местность: {item.Inpatient.WomanInLabor.Locality} \n" +
                 $"\t 6.Пол:{item.Kid.Gender} \n" +
                 $"\n\n"
-                + $"\t Подпись врача _______________\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" +
+                + $"\t Подпись врача _______________\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" +
                 $"\t\t\t МЕДИЦИНСКОГО СВИДЕТЕЛЬСТВА О РОЖДЕНИИ.\n" +
-                $"\t\t\t\t Серия 00000000  № 0000000\n" +
-                $"\t\t\t\t Дата выдачи «{item.Inpatient.WomanInLabor.DateofDischarge}»\n" +
+                $"\t\t\t\t Дата выдачи «{item.Inpatient.EndInpatient.ToString("MM-dd-yyyy")}»\n" +
                 $"\t 1.Ребенок родился:{item.EndChildbirth.ToString("dd.mm.yyyy, HH:mm")}\n" +
                 $"\t Мать \t\t\t\t\t\t\t\t\t" +
                 $"\t\t\t‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ \n" +

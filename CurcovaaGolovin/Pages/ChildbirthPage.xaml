@@ -9,7 +9,7 @@
       Loaded="Page_Loaded" 
       Title="ChildbirthPage">
 
-    <Grid>
+    <Grid Margin="0,0,-167,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
@@ -28,7 +28,7 @@
             <StackPanel Grid.Row="1">
                 <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Начало</TextBlock>
                 <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Конец</TextBlock>
-                <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Номер</TextBlock>
+                <TextBlock Style="{StaticResource MainTextBlock}" Height="22" Margin="10">Роженица</TextBlock>
 
             </StackPanel>
 
@@ -52,6 +52,10 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Margin="8" Style="{StaticResource MainTextBlock}">Время</TextBlock>
+                <TextBlock Style="{StaticResource MainTextBlock}">Время</TextBlock>
             </StackPanel>
             <StackPanel>
                 <TextBox Text="{Binding StartChildbirthTime}" x:Name="TimeN" Style="{StaticResource MainTextBox}" Margin="10,10,0,0" MaxLength="5" Width="60"></TextBox>

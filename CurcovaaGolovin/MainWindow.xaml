@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CurcovaaGolovin"
         mc:Ignorable="d"
-        Title="{Binding ElementName=MainFrame,Path=Content.Title}" Height="470" Width="800" Background="Azure" MinWidth="800" MinHeight="450" Icon="/Resources/Programm.png">
+        Title="{Binding ElementName=MainFrame,Path=Content.Title}" Height="470" Width="999" Background="Azure" MinWidth="800" MinHeight="450" Icon="/Resources/Programm.png">
 
     <Viewbox >
         <Grid Height="470" Width="850">
